@@ -9,10 +9,10 @@ import {HttpService} from './http.service';
 })
 export class AppComponent {
 
-  itema: OrderItem = new OrderItem(1, 2);
-  itemb: OrderItem = new OrderItem(2, 4);
-  itemList: Array<OrderItem> = [this.itema, this.itemb];
-  order: Order = new Order(1, 1, this.itemList);
+  itema: OrderItem = new OrderItem(1, 2, 3.54);
+  itemb: OrderItem = new OrderItem(2, 4, 4.15);
+  items: Array<OrderItem> = [this.itema, this.itemb];
+  order: Order = new Order(1, 1, this.items);
 
   constructor(private httpService: HttpService) {
   }
@@ -25,23 +25,25 @@ export class AppComponent {
 export class Order {
   customerId: number;
   sellerId: number;
-  OrderItemList: Array<OrderItem>;
+  items: Array<OrderItem>;
 
   constructor(customerId: number, sellerId: number, OrderItemList: Array<OrderItem>) {
     this.customerId = customerId;
     this.sellerId = sellerId;
-    this.OrderItemList = OrderItemList;
+    this.items = OrderItemList;
   }
 }
 
 export class OrderItem {
   private productId: number;
   private quantity: number;
+  private productPrice: number;
 
 
-  constructor(productId: number, quantity: number) {
+  constructor(productId: number, quantity: number, productPrice: number) {
     this.productId = productId;
     this.quantity = quantity;
+    this.productPrice = productPrice;
   }
 }
 
