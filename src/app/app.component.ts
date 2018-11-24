@@ -12,7 +12,7 @@ export class AppComponent {
   itema: OrderItem = new OrderItem(1, 2, 3.54);
   itemb: OrderItem = new OrderItem(2, 4, 4.15);
   items: Array<OrderItem> = [this.itema, this.itemb];
-  order: Order = new Order(1, 1, this.items);
+  order: Order = new Order(1, 1, 1, this.items);
 
   constructor(private httpService: HttpService) {
   }
@@ -23,11 +23,13 @@ export class AppComponent {
 }
 
 export class Order {
+  orderId: number;
   customerId: number;
   sellerId: number;
   items: Array<OrderItem>;
 
-  constructor(customerId: number, sellerId: number, OrderItemList: Array<OrderItem>) {
+  constructor(orderId: number, customerId: number, sellerId: number, OrderItemList: Array<OrderItem>) {
+    this.orderId = orderId;
     this.customerId = customerId;
     this.sellerId = sellerId;
     this.items = OrderItemList;
