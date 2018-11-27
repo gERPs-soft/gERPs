@@ -8,22 +8,20 @@
       <th class="tabHeader" scope="col">j.m</th>
       <th class="tabHeader" scope="col">Group</th>
       <th class="tabHeader" scope="col">Stock</th>
-      <th class="tabHeader" scope="col">Price</th>
       <th class="tabHeader" scope="col">Supplier</th>
       <th class="tabHeader" scope="col"></th>
       <th class="tabHeader" scope="col"></th>
     </tr>
     </thead>
     <tbody id="searched_table">
-    <tr *ngFor="let product of products | sortIndex; let i = index;">
-      <td style="text-align: center">{{i+1}}</td>
+    <tr *ngFor="let product of products; let i = index;">
+      <td>{{i+1}}</td>
       <td>{{product.assort_index}}</td>
       <td>{{product.name}}</td>
-      <td style="text-align: center">{{product.unitOfMasure}}</td>
-      <td style="text-align: center">{{product.product_group}}</td>
-      <td style="text-align: right">{{product.stock}}</td>
-      <td style="text-align: center">{{product.price.toFixed(2) | transformPrice:'zł'}}</td>
-      <td style="text-align: center">{{product.supplier}}</td>
+      <td>{{product.unitOfMasure}}</td>
+      <td>{{product.product_group}}</td>
+      <td>{{product.stock}}</td>
+      <td>{{product.supplier}}</td>
       <td><button [routerLink]="[product.id]">Edit</button></td>
       <td><a routerLink="/delete/{{product.id}}">Delete</a></td>
     </tr>
@@ -31,6 +29,5 @@
   </table>
 </div>
 <div>
-  <button (click)="getProducts()">Show all products</button>
   <router-outlet></router-outlet>
 </div>

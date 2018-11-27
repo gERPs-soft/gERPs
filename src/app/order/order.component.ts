@@ -11,7 +11,7 @@ export class OrderComponent implements OnInit {
   itema: OrderItem = new OrderItem(1, 2, 3.54);
   itemb: OrderItem = new OrderItem(2, 4, 4.15);
   items: Array<OrderItem> = [this.itema, this.itemb];
-  order: Order = new Order(1, 1, this.items);
+  order: Order = new Order(1, 1, 1, this.items, '');
 
   constructor(private httpService: HttpService) {
   }
@@ -25,14 +25,19 @@ export class OrderComponent implements OnInit {
 }
 
 export class Order {
+  orderId: number;
   customerId: number;
   sellerId: number;
   items: Array<OrderItem>;
+  sendDate: string;
 
-  constructor(customerId: number, sellerId: number, OrderItemList: Array<OrderItem>) {
+
+  constructor(orderId: number, customerId: number, sellerId: number, items: Array<OrderItem>, sendDate: string) {
+    this.orderId = orderId;
     this.customerId = customerId;
     this.sellerId = sellerId;
-    this.items = OrderItemList;
+    this.items = items;
+    this.sendDate = sendDate;
   }
 }
 

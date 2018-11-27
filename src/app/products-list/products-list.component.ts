@@ -6,8 +6,7 @@ import {HttpService} from '../services/http.service';
 
 @Component({
   selector: 'app-products-list',
-  templateUrl: './products-list.component.html',
-  styleUrls: ['./products-list.component.css']
+  templateUrl: './products-list.component.html'
 })
 export class ProductsListComponent implements OnInit {
 
@@ -15,6 +14,19 @@ export class ProductsListComponent implements OnInit {
 
   constructor(private http: HttpClient, private httpService: HttpService) {
   }
+
+  getProducts() {
+    this.httpService.getAllProducts().subscribe(data => {
+      this.products = data.slice();
+    });
+  }
+
+  ngOnInit() {
+    this.httpService.getAllProducts().subscribe(data => {
+      this.products = data.slice();
+    });
+  }
+
 
   ngOnInit() {
     this.httpService.getAllProducts().subscribe(data => {

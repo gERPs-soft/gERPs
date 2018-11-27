@@ -11,9 +11,7 @@ export class HttpService {
 
   private saveOrderUrl = 'http://localhost:8081/order/save';
   private saveCustomerUrl = 'http://localhost:8081/order/customer/save';
-  // private serverUrl = 'http://localhost:8081/order/save';
-  private serverUrl = 'http://localhost:8080';
-
+  private magazineUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) {
   }
@@ -23,17 +21,19 @@ export class HttpService {
 
   getProductById() {
   }
-postOrder2(order: Order): Observable<OrderStatus> {
+
+  postOrder(order: Order): Observable<OrderStatus> {
     return this.http.post<OrderStatus>(this.saveOrderUrl, order);
 }
   postOrder(order: Order): Observable<OrderStatus> {
     return this.http.post<OrderStatus>(this.serverUrl + '/magazine/orders/add-order', order);
   }
+
   postAddProduct(product: Product): Observable<OrderStatus> {
-    return this.http.post<OrderStatus>(this.serverUrl + '/magazine/products/add/new', product);
+    return this.http.post<OrderStatus>(this.magazineUrl + '/magazine/products/add/new', product);
   }
 
   getAllProducts(): Observable<Array<Product>> {
-    return this.http.get(this.serverUrl + '/magazine/products/all');
+    return this.http.get<Array<Product>>(this.magazineUrl + '/magazine/products/all');
   }
 }
