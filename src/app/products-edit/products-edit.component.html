@@ -1,0 +1,33 @@
+<div>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th class="tabHeader" scope="col">Lp</th>
+      <th class="tabHeader" scope="col">Indeks</th>
+      <th class="tabHeader" scope="col">Name</th>
+      <th class="tabHeader" scope="col">j.m</th>
+      <th class="tabHeader" scope="col">Group</th>
+      <th class="tabHeader" scope="col">Stock</th>
+      <th class="tabHeader" scope="col">Supplier</th>
+      <th class="tabHeader" scope="col"></th>
+      <th class="tabHeader" scope="col"></th>
+    </tr>
+    </thead>
+    <tbody id="searched_table">
+    <tr *ngFor="let product of products; let i = index;">
+      <td>{{i+1}}</td>
+      <td>{{product.assort_index}}</td>
+      <td>{{product.name}}</td>
+      <td>{{product.unitOfMasure}}</td>
+      <td>{{product.product_group}}</td>
+      <td>{{product.stock}}</td>
+      <td>{{product.supplier}}</td>
+      <td><button [routerLink]="[product.id]">Edit</button></td>
+      <td><a routerLink="/delete/{{product.id}}">Delete</a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>
