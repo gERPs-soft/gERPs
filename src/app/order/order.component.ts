@@ -1,33 +1,35 @@
-import {Component} from '@angular/core';
-
+import {Component, OnInit} from '@angular/core';
+import {HttpService} from '../services/http.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-order',
+  templateUrl: './order.component.html',
+  styleUrls: ['./order.component.css']
 })
-export class AppComponent {
+export class OrderComponent implements OnInit {
 
-
-  constructor(private httpService: HttpService) {
   itema: OrderItem = new OrderItem(1, 2, 3.54);
   itemb: OrderItem = new OrderItem(2, 4, 4.15);
   items: Array<OrderItem> = [this.itema, this.itemb];
-  order: Order = new Order(1, 1, 1, this.items);
+  order: Order = new Order(1, 1, this.items);
+
+  constructor(private httpService: HttpService) {
+  }
+
+  ngOnInit() {
+  }
 
   sendOrder() {
-    this.httpService.postOrder2(this.order).subscribe(status => console.log(status));
+    this.httpService.postOrder(this.order).subscribe(status => console.log(status));
   }
 }
 
 export class Order {
-  orderId: number;
   customerId: number;
   sellerId: number;
   items: Array<OrderItem>;
 
-  constructor(orderId: number, customerId: number, sellerId: number, OrderItemList: Array<OrderItem>) {
-    this.orderId = orderId;
+  constructor(customerId: number, sellerId: number, OrderItemList: Array<OrderItem>) {
     this.customerId = customerId;
     this.sellerId = sellerId;
     this.items = OrderItemList;
@@ -52,6 +54,6 @@ export class OrderStatus {
 
   constructor(deliveryTime: string) {
     this.deliveryTime = deliveryTime;
-
   }
+
 }
