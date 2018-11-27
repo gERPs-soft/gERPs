@@ -12,6 +12,8 @@ import { TransformPricePipe } from './shared/transform-price.pipe';
 import { SortIndexPipe } from './shared/sort-index.pipe';
 import { OrderComponent } from './order/order.component';
 import { CustomerComponent } from './customer/customer.component';
+import { ProductsComponent } from './products/products.component';
+import { ProductsListComponent } from './products-list/products-list.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { CustomerComponent } from './customer/customer.component';
     SortIndexPipe,
     OrderComponent,
     CustomerComponent
+    ProductsComponent,
+    ProductsListComponent
   ],
   imports: [
     BrowserModule,

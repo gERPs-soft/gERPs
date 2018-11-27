@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from '../services/http.service';
+import {SetterFn} from '@angular/core/src/reflection/types';
 
 @Component({
   selector: 'app-products',
-  templateUrl: './products.component.html'
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
 

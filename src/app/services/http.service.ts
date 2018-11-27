@@ -8,6 +8,7 @@ import {Product} from '../products/products.component';
   providedIn: 'root'
 })
 export class HttpService {
+
   private saveOrderUrl = 'http://localhost:8081/order/save';
   private saveCustomerUrl = 'http://localhost:8081/order/customer/save';
   private magazineUrl = 'http://localhost:8080';
@@ -23,6 +24,9 @@ export class HttpService {
 
   postOrder(order: Order): Observable<OrderStatus> {
     return this.http.post<OrderStatus>(this.saveOrderUrl, order);
+}
+  postOrder(order: Order): Observable<OrderStatus> {
+    return this.http.post<OrderStatus>(this.serverUrl + '/magazine/orders/add-order', order);
   }
 
   postAddProduct(product: Product): Observable<OrderStatus> {
