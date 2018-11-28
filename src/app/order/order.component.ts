@@ -8,8 +8,8 @@ import {HttpService} from '../services/http.service';
 })
 export class OrderComponent implements OnInit {
 
-  itema: OrderItem = new OrderItem(1, 2, 3.54);
-  itemb: OrderItem = new OrderItem(2, 4, 4.15);
+  itema: OrderItem = new OrderItem(1, 64, 41);
+  itemb: OrderItem = new OrderItem(2, 660, 2.50);
   items: Array<OrderItem> = [this.itema, this.itemb];
   order: Order = new Order(1, 1, 1, this.items, '');
 

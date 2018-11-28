@@ -26,11 +26,4 @@ export class ProductsListComponent implements OnInit {
       this.products = data.slice();
     });
   }
-
-
-  ngOnInit() {
-    this.httpService.getAllProducts().subscribe(data => {
-      this.products = data;
-    });
-  }
 }

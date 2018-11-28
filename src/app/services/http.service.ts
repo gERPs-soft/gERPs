@@ -25,9 +25,6 @@ export class HttpService {
   postOrder(order: Order): Observable<OrderStatus> {
     return this.http.post<OrderStatus>(this.saveOrderUrl, order);
 }
-  postOrder(order: Order): Observable<OrderStatus> {
-    return this.http.post<OrderStatus>(this.serverUrl + '/magazine/orders/add-order', order);
-  }
 
   postAddProduct(product: Product): Observable<OrderStatus> {
     return this.http.post<OrderStatus>(this.magazineUrl + '/magazine/products/add/new', product);

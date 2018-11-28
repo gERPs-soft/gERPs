@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from '../services/http.service';
-import {SetterFn} from '@angular/core/src/reflection/types';
 
 @Component({
   selector: 'app-products',
