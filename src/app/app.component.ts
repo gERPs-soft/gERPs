@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {HttpService} from './services/http.service';
 
 
 @Component({
@@ -10,17 +11,21 @@ export class AppComponent {
 
 
   constructor(private httpService: HttpService) {
-  itema: OrderItem = new OrderItem(1, 2, 3.54);
-  itemb: OrderItem = new OrderItem(2, 4, 4.15);
-  items: Array<OrderItem> = [this.itema, this.itemb];
-  order: Order = new Order(1, 1, 1, this.items);
-
-  sendOrder() {
-    this.httpService.postOrder2(this.order).subscribe(status => console.log(status));
   }
 }
 
-export class Order {
+/*{
+  itema: OrderItem = new OrderItem(1, 2, 3.54);
+  itemb: OrderItem = new OrderItem(2, 4, 4.15);
+  items: Array<OrderItem> = [this.itema, this.itemb];
+  order: Order = new Order(1, 1, 1, this.items);*/
+
+/*sendOrder() {
+  this.httpService.postOrder2(this.order).subscribe(status => console.log(status));
+}
+}*/
+
+/*export class Order {
   orderId: number;
   customerId: number;
   sellerId: number;
@@ -54,4 +59,4 @@ export class OrderStatus {
     this.deliveryTime = deliveryTime;
 
   }
-}
+}*/
