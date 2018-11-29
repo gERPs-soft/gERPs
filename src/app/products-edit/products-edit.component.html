@@ -1,7 +1,6 @@
 <h4>Edit products:</h4>
 <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
 
-
   <div style="display: inline-grid; margin: 10px">
     <label for="id">Id</label><input type="text" id="id" formControlName="id">
     <label for="assort_index">Index</label>
@@ -12,7 +11,7 @@
     <input type="text" id="product_group" formControlName="product_group">
     <label for="unitOfMasure">jm</label>
     <select id="unitOfMasure" formControlName="unitOfMasure">
-      <option *ngFor="let unitOf of unitOfMass" value="unitOf">{{unitOf}}</option>
+      <option *ngFor="let unitOf of unitOfMass" [value]="unitOf">{{unitOf}}</option>
     </select>
     <label for="barcode">barcode</label>
     <input type="text" id="barcode" formControlName="barcode">
@@ -41,7 +40,7 @@
       <option *ngFor="let vat of vats" [value]="vat">{{vat}}</option>
     </select>
 
-    <button type="submit" [disabled]="contactForm.valid">Submit</button>
-    <button type="reset" [disabled]="contactForm.valid">Reset</button>
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
   </div>
 </form>

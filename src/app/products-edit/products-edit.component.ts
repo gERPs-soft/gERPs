@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Product} from '../products/products.component';
+import {HttpService} from '../services/http.service';
 
 @Component({
   selector: 'app-products-edit',
@@ -10,16 +11,20 @@ import {Product} from '../products/products.component';
 export class ProductsEditComponent implements OnInit {
 
   contactForm: FormGroup;
+  product: Product;
 
   unitOfMass = ['szt', 'litr', 'tona', 'opakowanie', 'bańka'];
   package_units = ['Karton', 'Folia', 'Baniak', 'Paleta', 'Box'];
   vats = ['VAT_23', 'VAT_8', 'VAT_0'];
 
+  constructor(private httpService: HttpService) {
+  }
+
   ngOnInit() {
     this.contactForm = new FormGroup({
       id: new FormControl(null),
       assort_index: new FormControl(null),
-      name: new FormControl(),
+      name: new FormControl(null),
       product_group: new FormControl(null),
       unitOfMasure: new FormControl(this.unitOfMass[0]),
       barcode: new FormControl(null),
@@ -38,27 +43,36 @@ export class ProductsEditComponent implements OnInit {
 
   onSubmit() {
     console.log(this.contactForm);
+    this.product = new Product(null, this.contactForm.value.assort_index, this.contactForm.value.name, this.contactForm.value.product_group,
+      this.contactForm.value.unitOfMasure, this.contactForm.value.barcode, this.contactForm.value.weight_unit,
+      this.contactForm.value.package_unit,
+      this.contactForm.value.number_in_package, this.contactForm.value.height, this.contactForm.value.weight, this.contactForm.value.length,
+      this.contactForm.value.supplier, this.contactForm.value.stock, this.contactForm.value.price, this.contactForm.value.vat);
+
+      this.httpService.postAddProduct(this.product).subscribe(status => console.log(status));
+    console.log(this.product);
   }
 
 }
 
 class ProductForm {
   constructor(
-   public id: number,
-   public assort_index: string,
-   public name: string,
-   public product_group: number,
-   public unitOfMasure: string,
-   public barcode: string,
-  public weight_unit: number,
-  public package_unit: string,
-  public number_in_package: number,
-  public height: number,
-  public weight: number,
-  public length: number,
-  public supplier: number,
-  public stock: number,
-  public  price: number,
-  public vat: string
-) {}
+    public id: number,
+    public assort_index: string,
+    public name: string,
+    public product_group: number,
+    public unitOfMasure: string,
+    public barcode: string,
+    public weight_unit: number,
+    public package_unit: string,
+    public number_in_package: number,
+    public height: number,
+    public weight: number,
+    public length: number,
+    public supplier: number,
+    public stock: number,
+    public  price: number,
+    public vat: string
+  ) {
+  }
 }
