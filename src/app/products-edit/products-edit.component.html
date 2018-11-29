@@ -1,33 +1,47 @@
-<div>
-  <table class="table table-hover">
-    <thead>
-    <tr>
-      <th class="tabHeader" scope="col">Lp</th>
-      <th class="tabHeader" scope="col">Indeks</th>
-      <th class="tabHeader" scope="col">Name</th>
-      <th class="tabHeader" scope="col">j.m</th>
-      <th class="tabHeader" scope="col">Group</th>
-      <th class="tabHeader" scope="col">Stock</th>
-      <th class="tabHeader" scope="col">Supplier</th>
-      <th class="tabHeader" scope="col"></th>
-      <th class="tabHeader" scope="col"></th>
-    </tr>
-    </thead>
-    <tbody id="searched_table">
-    <tr *ngFor="let product of products; let i = index;">
-      <td>{{i+1}}</td>
-      <td>{{product.assort_index}}</td>
-      <td>{{product.name}}</td>
-      <td>{{product.unitOfMasure}}</td>
-      <td>{{product.product_group}}</td>
-      <td>{{product.stock}}</td>
-      <td>{{product.supplier}}</td>
-      <td><button [routerLink]="[product.id]">Edit</button></td>
-      <td><a routerLink="/delete/{{product.id}}">Delete</a></td>
-    </tr>
-    </tbody>
-  </table>
-</div>
-<div>
-  <router-outlet></router-outlet>
-</div>
+<h4>Edit products:</h4>
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
+
+  <div style="display: inline-grid; margin: 10px">
+    <label for="id">Id</label><input type="text" id="id" formControlName="id">
+    <label for="assort_index">Index</label>
+    <input type="text" id="assort_index" formControlName="assort_index">
+    <label for="name">Name</label>
+    <input type="text" id="name" formControlName="name">
+    <label for="product_group">product group</label>
+    <input type="text" id="product_group" formControlName="product_group">
+    <label for="unitOfMasure">jm</label>
+    <select id="unitOfMasure" formControlName="unitOfMasure">
+      <option *ngFor="let unitOf of unitOfMass" value="unitOf">{{unitOf}}</option>
+    </select>
+    <label for="barcode">barcode</label>
+    <input type="text" id="barcode" formControlName="barcode">
+    <label for="weight_unit">weight of unit</label>
+    <input type="text" id="weight_unit" formControlName="weight_unit">
+    <label for="package_unit">package_unit</label>
+    <select id="package_unit" formControlName="package_unit">
+      <option *ngFor="let p_unit of package_units" [value]="p_unit">{{p_unit}}</option>
+    </select>
+    <label for="number_in_package">number in package</label>
+    <input type="text" id="number_in_package" formControlName="number_in_package">
+    <label for="height">height</label>
+    <input type="text" id="height" formControlName="height">
+    <label for="weight">weight</label>
+    <input type="text" id="weight" formControlName="weight">
+    <label for="length">length</label>
+    <input type="text" id="length" formControlName="length">
+    <label for="supplier">supplier</label>
+    <input type="text" id="supplier" formControlName="supplier">
+    <label for="stock">stock</label>
+    <input type="text" id="stock" formControlName="stock">
+    <label for="price">Price</label>
+    <input type="text" id="price" formControlName="price">
+    <label for="vat">Vat</label>
+    <select id="vat" formControlName="vat">
+      <option *ngFor="let vat of vats" [value]="vat">{{vat}}</option>
+    </select>
+
+    <button type="submit" [disabled]="contactForm.valid">Submit</button>
+    <button type="reset" [disabled]="contactForm.valid">Reset</button>
+  </div>
+</form>
