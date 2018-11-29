@@ -14,14 +14,14 @@
     </tr>
     </thead>
     <tbody id="searched_table">
-    <tr *ngFor="let order of orders | sortIndex: 'assort_index'; let i = index;">
+    <tr *ngFor="let order of orders | sortIndex: 'orderId'; let i = index;">
       <td style="text-align: center">{{i+1}}</td>
       <td>{{order.orderId}}</td>
       <td>{{order.customerId}}</td>
       <td style="text-align: center">{{order.sellerId}}</td>
       <td style="text-align: center">{{order.sendDate}}</td>
-      <td><button [routerLink]="[product.id]">Edit</button></td>
-      <td><a routerLink="/delete/{{product.id}}">Delete</a></td>
+      <td><button [routerLink]="[order.orderId]">Edit</button></td>
+      <td><a routerLink="/delete/{{order.orderId}}">Delete</a></td>
     </tr>
     </tbody>
   </table>

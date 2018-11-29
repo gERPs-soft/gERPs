@@ -19,7 +19,7 @@ export class ProductsEditComponent implements OnInit {
     this.contactForm = new FormGroup({
       id: new FormControl(null),
       assort_index: new FormControl(null),
-      name: new FormControl('dupa'),
+      name: new FormControl(),
       product_group: new FormControl(null),
       unitOfMasure: new FormControl(this.unitOfMass[0]),
       barcode: new FormControl(null),

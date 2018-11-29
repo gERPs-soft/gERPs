@@ -11,9 +11,9 @@ export class OrderComponent implements OnInit {
 
   itema: OrderItem = new OrderItem(2, 48, 2.5);
   itemb: OrderItem = new OrderItem(4, 60, 25.50);
-  itemc: OrderItem = new OrderItem(1, 340, 35.50);
+  itemc: OrderItem = new OrderItem(1, 310, 35.50);
   items: Array<OrderItem> = [this.itema, this.itemb, this.itemc];
-  order: Order = new Order(5, 1, 1, this.items, '');
+  order: Order = new Order(1, 1, 1, this.items, '');
 
   constructor(private httpService: HttpService) {
   }
