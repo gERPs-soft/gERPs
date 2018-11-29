@@ -7,20 +7,29 @@ import {HttpService} from '../services/http.service';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
+  orders: Array<Order>;
 
-  itema: OrderItem = new OrderItem(1, 64, 41);
-  itemb: OrderItem = new OrderItem(2, 660, 2.50);
-  items: Array<OrderItem> = [this.itema, this.itemb];
+  itema: OrderItem = new OrderItem(2, 48, 2.5);
+  itemb: OrderItem = new OrderItem(4, 60, 25.50);
+  itemc: OrderItem = new OrderItem(1, 310, 35.50);
+  items: Array<OrderItem> = [this.itema, this.itemb, this.itemc];
   order: Order = new Order(1, 1, 1, this.items, '');
 
   constructor(private httpService: HttpService) {
   }
 
   ngOnInit() {
+    this.getOrders();
   }
 
   sendOrder() {
     this.httpService.postOrder(this.order).subscribe(status => console.log(status));
+  }
+
+  getOrders() {
+    this.httpService.getAllOrders().subscribe(data => {
+      this.orders = data.slice();
+    });
   }
 }
 

@@ -1,6 +1,6 @@
 <div>
   <table class="table table-hover">
-    <thead>
+    <thead class="thead-dark">
     <tr>
       <th class="tabHeader" scope="col">Lp</th>
       <th class="tabHeader" scope="col">Indeks</th>
@@ -15,7 +15,7 @@
     </tr>
     </thead>
     <tbody id="searched_table">
-    <tr *ngFor="let product of products | sortIndex: 'assort_index'; let i = index;">
+    <tr *ngFor="let product of products | sortIndex: 'name'; let i = index;">
       <td style="text-align: center">{{i+1}}</td>
       <td>{{product.assort_index}}</td>
       <td>{{product.name}}</td>
