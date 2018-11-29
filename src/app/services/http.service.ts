@@ -10,6 +10,7 @@ import {Product} from '../products/products.component';
 export class HttpService {
 
   private saveOrderUrl = 'http://localhost:8081/order/save';
+  private savedOrderUrl = 'http://localhost:8081/order/orders';
   private saveCustomerUrl = 'http://localhost:8081/order/customer/save';
   private magazineUrl = 'http://localhost:8080';
 
@@ -25,6 +26,9 @@ export class HttpService {
   postOrder(order: Order): Observable<OrderStatus> {
     return this.http.post<OrderStatus>(this.saveOrderUrl, order);
 }
+  getAllOrders(): Observable<Array<Order>> {
+    return this.http.get<Array<Order>>(this.savedOrderUrl);
+  }
 
   postAddProduct(product: Product): Observable<OrderStatus> {
     return this.http.post<OrderStatus>(this.magazineUrl + '/magazine/products/add/new', product);
