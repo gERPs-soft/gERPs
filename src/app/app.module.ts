@@ -12,6 +12,7 @@ import { TransformPricePipe } from './shared/transform-price.pipe';
 import { SortIndexPipe } from './shared/sort-index.pipe';
 import { OrderComponent } from './order/order.component';
 import { CustomerComponent } from './customer/customer.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { CustomerComponent } from './customer/customer.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]
