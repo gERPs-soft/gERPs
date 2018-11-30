@@ -3,23 +3,29 @@
     <thead class="thead-dark">
     <tr>
       <th class="tabHeader" scope="col">#</th>
-      <th class="tabHeader" scope="col">Order no.</th>
-      <th class="tabHeader" scope="col">Customer</th>
-      <th class="tabHeader" scope="col">Seller</th>
-      <th class="tabHeader" scope="col">Order date</th>
-      <th class="tabHeader" scope="col">Status</th>
-      <th class="tabHeader" scope="col">Send date</th>
+      <th class="tabHeader" scope="col">Customer no.</th>
+      <th class="tabHeader" scope="col">Company name</th>
+      <th class="tabHeader" scope="col">Address</th>
+      <th class="tabHeader" scope="col">Phone no.</th>
+      <th class="tabHeader" scope="col">NIP</th>
+      <th class="tabHeader" scope="col">Email</th>
+      <th class="tabHeader" scope="col">First name</th>
+      <th class="tabHeader" scope="col">Last name</th>
+      <th class="tabHeader" scope="col">Customer type</th>
     </tr>
     </thead>
     <tbody id="searched_table">
     <tr *ngFor="let customer of customers | sortIndex: 'assort_index'; let i = index;">
       <td style="text-align: center">{{i + 1}}</td>
-      <td>{{customer.id}}</td>
-      <td>{{customer.companyName}}</td>
-      <!--<td style="text-align: center">{{order.sellerId}}</td>
-      <td style="text-align: center">{{order.orderDate}}</td>
-      <td style="text-align: center">{{order.orderStatus}}</td>
-      <td style="text-align: center">{{order.sendDate}}</td>-->
+      <td style="text-align: center">{{customer.id}}</td>
+      <td style="text-align: center">{{customer.companyName}}</td>
+      <td style="text-align: center">{{customer.address}}</td>
+      <td style="text-align: center">{{customer.phoneNumber}}</td>
+      <td style="text-align: center">{{customer.nip}}</td>
+      <td style="text-align: center">{{customer.email}}</td>
+      <td style="text-align: center">{{customer.firstName}}</td>
+      <td style="text-align: center">{{customer.lastName}}</td>
+      <td style="text-align: center">{{customer.customerType}}</td>
 
       <!--<td><button [routerLink]="[product.id]">Edit</button></td>
       <td><a routerLink="/delete/{{product.id}}">Delete</a></td>-->
@@ -27,3 +33,5 @@
     </tbody>
   </table>
 </div>
+
+<button (click)="getCustomers()">Get all customers</button>

@@ -36,7 +36,7 @@ export class Customer {
   private phoneNumber: string;
   private email: string;
   private customerType: CustomerType;
-
+  
   constructor() {
   }
 
