@@ -4,29 +4,30 @@
   <table class="table table-hover">
     <thead class="thead-dark">
     <tr>
-      <th class="tabHeader" scope="col">Lp</th>
-      <th class="tabHeader" scope="col">Indeks</th>
+      <th class="tabHeader" scope="col">#</th>
+      <th class="tabHeader" scope="col">Order no.</th>
       <th class="tabHeader" scope="col">Customer</th>
       <th class="tabHeader" scope="col">Seller</th>
-      <th class="tabHeader" scope="col">SendDate</th>
-      <th class="tabHeader" scope="col"></th>
-      <th class="tabHeader" scope="col"></th>
+      <th class="tabHeader" scope="col">Order date</th>
+      <th class="tabHeader" scope="col">Status</th>
+      <th class="tabHeader" scope="col">Send date</th>
     </tr>
     </thead>
     <tbody id="searched_table">
-    <tr *ngFor="let order of orders | sortIndex: 'orderId'; let i = index;">
-      <td style="text-align: center">{{i+1}}</td>
+
+    <tr *ngFor="let order of orders | sortIndex: 'assort_index'; let i = index;">
+      <td style="text-align: center">{{i + 1}}</td>
       <td>{{order.orderId}}</td>
       <td>{{order.customerId}}</td>
       <td style="text-align: center">{{order.sellerId}}</td>
+      <td style="text-align: center">{{order.orderDate}}</td>
+      <td style="text-align: center">{{order.orderStatus}}</td>
       <td style="text-align: center">{{order.sendDate}}</td>
-      <td><button [routerLink]="[order.orderId]">Edit</button></td>
-      <td><a routerLink="/delete/{{order.orderId}}">Delete</a></td>
+      <!--<td><button [routerLink]="[product.id]">Edit</button></td>
+      <td><a routerLink="/delete/{{product.id}}">Delete</a></td>-->
     </tr>
     </tbody>
   </table>
 </div>
-<div>
-  <button (click)="getProducts()">Show all products</button>
-  <router-outlet></router-outlet>
-</div>
+
+<button (click)="getOrders()">Get all orders</button>

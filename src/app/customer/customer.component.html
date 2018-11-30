@@ -1,3 +1,37 @@
-<p>
-  customer works!
-</p>
+<div>
+  <table class="table table-hover">
+    <thead class="thead-dark">
+    <tr>
+      <th class="tabHeader" scope="col">#</th>
+      <th class="tabHeader" scope="col">Customer no.</th>
+      <th class="tabHeader" scope="col">Company name</th>
+      <th class="tabHeader" scope="col">Address</th>
+      <th class="tabHeader" scope="col">Phone no.</th>
+      <th class="tabHeader" scope="col">NIP</th>
+      <th class="tabHeader" scope="col">Email</th>
+      <th class="tabHeader" scope="col">First name</th>
+      <th class="tabHeader" scope="col">Last name</th>
+      <th class="tabHeader" scope="col">Customer type</th>
+    </tr>
+    </thead>
+    <tbody id="searched_table">
+    <tr *ngFor="let customer of customers | sortIndex: 'assort_index'; let i = index;">
+      <td style="text-align: center">{{i + 1}}</td>
+      <td style="text-align: center">{{customer.id}}</td>
+      <td style="text-align: center">{{customer.companyName}}</td>
+      <td style="text-align: center">{{customer.address}}</td>
+      <td style="text-align: center">{{customer.phoneNumber}}</td>
+      <td style="text-align: center">{{customer.nip}}</td>
+      <td style="text-align: center">{{customer.email}}</td>
+      <td style="text-align: center">{{customer.firstName}}</td>
+      <td style="text-align: center">{{customer.lastName}}</td>
+      <td style="text-align: center">{{customer.customerType}}</td>
+
+      <!--<td><button [routerLink]="[product.id]">Edit</button></td>
+      <td><a routerLink="/delete/{{product.id}}">Delete</a></td>-->
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<button (click)="getCustomers()">Get all customers</button>
