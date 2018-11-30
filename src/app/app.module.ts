@@ -12,6 +12,12 @@ import { TransformPricePipe } from './shared/transform-price.pipe';
 import { SortIndexPipe } from './shared/sort-index.pipe';
 import { OrderComponent } from './order/order.component';
 import { CustomerComponent } from './customer/customer.component';
+import { OrderListComponent } from './order-list/order-list.component';
+import { OrderEditComponent } from './order-edit/order-edit.component';
+import { CustomerEditComponent } from './customer-edit/customer-edit.component';
+import { CustomerListComponent } from './customer-list/customer-list.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import { CustomerAddComponent } from './customer-add/customer-add.component';
 
 @NgModule({
   declarations: [
@@ -22,14 +28,20 @@ import { CustomerComponent } from './customer/customer.component';
     TransformPricePipe,
     SortIndexPipe,
     OrderComponent,
-    CustomerComponent
+    CustomerComponent,
+    OrderListComponent,
+    OrderEditComponent,
+    CustomerEditComponent,
+    CustomerListComponent,
+    CustomerAddComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [HttpService],
+  providers: [HttpService, ReactiveFormsModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
