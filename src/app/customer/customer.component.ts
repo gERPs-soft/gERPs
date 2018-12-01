@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpService} from '../services/http.service';
-import {Order} from '../order/order.component';
 import {CustomerHttpService} from '../services/customer-http.service';
+import {Customer} from '../model/customer';
+
 
 @Component({
   selector: 'app-customer',
@@ -30,28 +30,7 @@ export class CustomerComponent implements OnInit {
   }
 }
 
-export class Customer {
-
-  id: number;
-  firstName: string;
-  lastName: string;
-  companyName: string;
-  address: string;
-  nip: string;
-  phoneNumber: string;
-  email: string;
-  customerType: CustomerType;
 
 
-  constructor() {
-  }
-}
 
-export enum CustomerType {
-  BUSINESS = 'BUSINESS',
-  INDIVIDUAL = 'INDIVIDUAL'
-}
 
-export class CustomerStatus {
-  status: string;
-}

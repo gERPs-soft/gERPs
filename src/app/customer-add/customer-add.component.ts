@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {Customer, CustomerComponent, CustomerType} from '../customer/customer.component';
+import {CustomerComponent} from '../customer/customer.component';
 import {CustomerHttpService} from '../services/customer-http.service';
+import {Customer} from '../model/customer';
+import {CustomerType} from '../model/customer-type';
 
 @Component({
   selector: 'app-customer-add',
@@ -44,6 +46,7 @@ export class CustomerAddComponent implements OnInit {
     this.newCustomer.customerType = this.customerForm.value.customerType;
     this.customerHttpService.postCustomer(this.newCustomer).subscribe(status => console.log(status));
     this.customerForm.reset();
+    CustomerComponent.getCustomers();
   }
 
 }

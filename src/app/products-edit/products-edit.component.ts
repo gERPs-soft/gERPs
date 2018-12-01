@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {Product} from '../products/products.component';
 import {HttpService} from '../services/http.service';
+import {Product} from '../model/product';
 
 @Component({
   selector: 'app-products-edit',
@@ -49,30 +49,9 @@ export class ProductsEditComponent implements OnInit {
       this.contactForm.value.number_in_package, this.contactForm.value.height, this.contactForm.value.weight, this.contactForm.value.length,
       this.contactForm.value.supplier, this.contactForm.value.stock, this.contactForm.value.price, this.contactForm.value.vat);
 
-      this.httpService.postAddProduct(this.product).subscribe(status => console.log(status));
+    this.httpService.postAddProduct(this.product).subscribe(status => console.log(status));
     console.log(this.product);
   }
 
 }
 
-class ProductForm {
-  constructor(
-    public id: number,
-    public assort_index: string,
-    public name: string,
-    public product_group: number,
-    public unitOfMasure: string,
-    public barcode: string,
-    public weight_unit: number,
-    public package_unit: string,
-    public number_in_package: number,
-    public height: number,
-    public weight: number,
-    public length: number,
-    public supplier: number,
-    public stock: number,
-    public  price: number,
-    public vat: string
-  ) {
-  }
-}
