@@ -16,8 +16,8 @@ import { OrderListComponent } from './order-list/order-list.component';
 import { OrderEditComponent } from './order-edit/order-edit.component';
 import { CustomerEditComponent } from './customer-edit/customer-edit.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
-import {ReactiveFormsModule} from '@angular/forms';
 import { CustomerAddComponent } from './customer-add/customer-add.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -39,6 +39,9 @@ import { CustomerAddComponent } from './customer-add/customer-add.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule
+    HttpClientModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [HttpService, ReactiveFormsModule],
