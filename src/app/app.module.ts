@@ -12,10 +12,7 @@ import { TransformPricePipe } from './shared/transform-price.pipe';
 import { SortIndexPipe } from './shared/sort-index.pipe';
 import { OrderComponent } from './order/order.component';
 import { CustomerComponent } from './customer/customer.component';
-import { OrderListComponent } from './order-list/order-list.component';
 import { OrderEditComponent } from './order-edit/order-edit.component';
-import { CustomerEditComponent } from './customer-edit/customer-edit.component';
-import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomerAddComponent } from './customer-add/customer-add.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
@@ -29,10 +26,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     SortIndexPipe,
     OrderComponent,
     CustomerComponent,
-    OrderListComponent,
     OrderEditComponent,
-    CustomerEditComponent,
-    CustomerListComponent,
     CustomerAddComponent
   ],
   imports: [

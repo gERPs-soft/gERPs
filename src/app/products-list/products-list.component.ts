@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {Product} from '../products/products.component';
 import {HttpService} from '../services/http.service';
+import {Product} from '../model/product';
 
 @Component({
   selector: 'app-products-list',
