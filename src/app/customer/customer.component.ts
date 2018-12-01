@@ -9,6 +9,7 @@ import {CustomerHttpService} from '../services/customer-http.service';
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
+
   static getCustomers(): any {
     throw new Error('Method not implemented.');
   }
@@ -27,7 +28,6 @@ export class CustomerComponent implements OnInit {
       this.customers = data.slice();
     });
   }
-
 }
 
 export class Customer {

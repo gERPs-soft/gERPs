@@ -34,10 +34,14 @@
     <select id="customerType" formControlName="customerType">
       <option *ngFor="let type of customerTypes" [value]="type">{{type}}</option>
     </select>
+
     <div>
-      <button type="submit">Add customer</button>
-      <button type="reset">Reset</button>
+      <p>
+        <button type="submit">Add customer</button>
+        <button type="reset">Reset</button>
+      </p>
     </div>
+
   </div>
 </form>
 
