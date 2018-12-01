@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpService} from './services/http.service';
 import {HttpClientModule} from '@angular/common/http';
@@ -18,6 +17,8 @@ import { CustomerEditComponent } from './customer-edit/customer-edit.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomerAddComponent } from './customer-add/customer-add.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AppRoutingModule} from './app.routing.module';
+import {LoginComponent} from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -33,14 +34,15 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     OrderEditComponent,
     CustomerEditComponent,
     CustomerListComponent,
-    CustomerAddComponent
+    CustomerAddComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
   providers: [HttpService, ReactiveFormsModule],
   bootstrap: [AppComponent]
