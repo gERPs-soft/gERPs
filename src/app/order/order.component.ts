@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpService} from '../services/http.service';
+import {OrderHttpService} from '../services/order-http.service';
 
 @Component({
   selector: 'app-order',
@@ -14,7 +15,7 @@ export class OrderComponent implements OnInit {
   items: Array<OrderItem> = [this.itema, this.itemb];
   order: Order = new Order(1, 1, 1, this.items);
 
-  constructor(private httpService: HttpService) {
+  constructor(private orderHttpService: OrderHttpService) {
   }
 
   ngOnInit() {
@@ -22,11 +23,11 @@ export class OrderComponent implements OnInit {
   }
 
   sendOrder() {
-    this.httpService.postOrder(this.order).subscribe(status => console.log(status));
+    this.orderHttpService.postOrder(this.order).subscribe(status => console.log(status));
   }
 
   getOrders() {
-    this.httpService.getAllOrders().subscribe(data => {
+    this.orderHttpService.getAllOrders().subscribe(data => {
       this.orders = data.slice();
     });
   }

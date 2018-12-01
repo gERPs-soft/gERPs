@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpService} from '../services/http.service';
 import {Order} from '../order/order.component';
+import {CustomerHttpService} from '../services/customer-http.service';
 
 @Component({
   selector: 'app-customer',
@@ -9,9 +10,13 @@ import {Order} from '../order/order.component';
 })
 export class CustomerComponent implements OnInit {
 
+  static getCustomers(): any {
+    throw new Error('Method not implemented.');
+  }
+
   customers: Array<Customer>;
 
-  constructor(private httpService: HttpService) {
+  constructor(private customerHttpService: CustomerHttpService) {
   }
 
   ngOnInit() {
@@ -19,34 +24,34 @@ export class CustomerComponent implements OnInit {
   }
 
   getCustomers() {
-    this.httpService.getAllCustomers().subscribe(data => {
+    this.customerHttpService.getAllCustomers().subscribe(data => {
       this.customers = data.slice();
     });
   }
-
 }
 
 export class Customer {
 
-  private id: number;
-  private firstName: string;
-  private lastName: string;
-  private companyName: string;
-  private address: string;
-  private nip: string;
-  private phoneNumber: string;
-  private email: string;
-  private customerType: CustomerType;
-  
+  id: number;
+  firstName: string;
+  lastName: string;
+  companyName: string;
+  address: string;
+  nip: string;
+  phoneNumber: string;
+  email: string;
+  customerType: CustomerType;
+
+
   constructor() {
   }
-
 }
 
-enum CustomerType {
-  BUSINESS, INDIVIDUAL
+export enum CustomerType {
+  BUSINESS = 'BUSINESS',
+  INDIVIDUAL = 'INDIVIDUAL'
 }
 
 export class CustomerStatus {
-  private status: string;
+  status: string;
 }
