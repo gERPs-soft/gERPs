@@ -15,7 +15,7 @@
     </thead>
     <tbody id="searched_table">
 
-    <tr *ngFor="let order of orders | sortIndex: 'assort_index'; let i = index;">
+    <tr *ngFor="let order of orders | sortIndex: 'orderDate'; let i = index;">
       <td style="text-align: center">{{i + 1}}</td>
       <td>{{order.orderId}}</td>
       <td>{{order.customerId}}</td>
