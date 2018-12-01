@@ -1,6 +1,16 @@
-<app-order></app-order>
-<app-customer></app-customer>
-<app-customer-add></app-customer-add>
-<app-products-list></app-products-list>
-<app-products></app-products>
-<app-products-edit></app-products-edit>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/home">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" routerLink="/orders">Orders</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" routerLink="/products">Products</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#" routerLink="/login">Log in</a>
+  </li>
+</ul>
+
+<router-outlet></router-outlet>
