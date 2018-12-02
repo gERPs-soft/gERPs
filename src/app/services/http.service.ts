@@ -9,14 +9,13 @@ import {Product} from '../model/product';
 })
 export class HttpService {
 
-
   private magazineUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) {
   }
 
-  postAddProduct(product: Product): Observable<OrderStatus> {
-    return this.http.post<OrderStatus>(this.magazineUrl + '/magazine/products/add/new', product);
+  postAddOrSaveProduct(product: Product): Observable<OrderStatus> {
+    return this.http.post<OrderStatus>(this.magazineUrl + '/magazine/products/save', product);
   }
 
   getAllProducts(): Observable<Array<Product>> {
