@@ -9,7 +9,6 @@ import {Product} from '../model/product';
 })
 export class HttpService {
 
-
   private magazineUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) {
