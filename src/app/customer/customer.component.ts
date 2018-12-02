@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CustomerHttpService} from '../services/customer-http.service';
 import {Customer} from '../model/customer';
 
@@ -10,16 +10,15 @@ import {Customer} from '../model/customer';
 })
 export class CustomerComponent implements OnInit {
 
-  static getCustomers(): any {
-    throw new Error('Method not implemented.');
-  }
-
   customers: Array<Customer>;
+  @Input()
+  showCustomerForm: boolean;
 
   constructor(private customerHttpService: CustomerHttpService) {
   }
 
   ngOnInit() {
+    this.showCustomerForm = true;
     this.getCustomers();
   }
 
@@ -27,6 +26,19 @@ export class CustomerComponent implements OnInit {
     this.customerHttpService.getAllCustomers().subscribe(data => {
       this.customers = data.slice();
     });
+  }
+
+  addCustomerForm() {
+    this.showCustomerForm = false;
+  }
+
+  hideForm(task: boolean) {
+    this.ngOnInit();
+  }
+
+  deleteCustomer(customer: Customer) {
+    this.customerHttpService.deleteCustomer(customer);
+    this.getCustomers();
   }
 }
 

@@ -10,7 +10,9 @@ import {CustomerStatus} from '../model/customer-status';
 })
 export class CustomerHttpService {
   private saveCustomerUrl = 'http://localhost:8081/customer/save';
+  private deleteCustomerUrl = 'http://localhost:8081/customer/delete';
   private savedCustomersUrl = 'http://localhost:8081/customer/customers';
+  urlDelete: string;
 
   constructor(private http: HttpClient) {
   }
@@ -22,5 +24,12 @@ export class CustomerHttpService {
 
   getAllCustomers(): Observable<Array<Customer>> {
     return this.http.get<Array<Customer>>(this.savedCustomersUrl);
+  }
+
+  deleteCustomer(customer: Customer): Observable<CustomerStatus> {
+    console.log('Delete customer id: ' + customer.id);
+    this.urlDelete = this.deleteCustomerUrl + '/' + customer.id;
+    console.log(this.urlDelete);
+    return this.http.post<CustomerStatus>(this.urlDelete, customer);
   }
 }

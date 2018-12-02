@@ -1,9 +1,17 @@
 <div>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button (click)="getCustomers()">Get all customers</button>
+    <button (click)="addCustomerForm()">Add new customer</button>
+  </div>
+</div>
+<div>
+<app-customer-add [hidden]="showCustomerForm" (eventForm)="hideForm($event)"></app-customer-add>
+</div>
+<div>
   <table class="table table-hover">
     <thead class="thead-dark">
     <tr>
       <th class="tabHeader" scope="col">#</th>
-      <th class="tabHeader" scope="col">Customer no.</th>
       <th class="tabHeader" scope="col">Company name</th>
       <th class="tabHeader" scope="col">Address</th>
       <th class="tabHeader" scope="col">Phone no.</th>
@@ -12,12 +20,13 @@
       <th class="tabHeader" scope="col">First name</th>
       <th class="tabHeader" scope="col">Last name</th>
       <th class="tabHeader" scope="col">Customer type</th>
+      <th class="tabHeader" scope="col"></th>
+      <th class="tabHeader" scope="col"></th>
     </tr>
     </thead>
     <tbody id="searched_table">
     <tr *ngFor="let customer of customers | sortIndex: 'lastName'; let i = index;">
       <td style="text-align: center">{{i + 1}}</td>
-      <td style="text-align: center">{{customer.id}}</td>
       <td style="text-align: center">{{customer.companyName}}</td>
       <td style="text-align: center">{{customer.address}}</td>
       <td style="text-align: center">{{customer.phoneNumber}}</td>
@@ -27,11 +36,11 @@
       <td style="text-align: center">{{customer.lastName}}</td>
       <td style="text-align: center">{{customer.customerType}}</td>
 
-      <!--<td><button [routerLink]="[product.id]">Edit</button></td>
-      <td><a routerLink="/delete/{{product.id}}">Delete</a></td>-->
+      <td><button (click)="editCustomer(customer)">Edit</button></td>
+      <td><button (click)="deleteCustomer(customer)">Delete</button></td>
     </tr>
     </tbody>
   </table>
 </div>
 
-<button (click)="getCustomers()">Get all customers</button>
+

@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpService} from '../services/http.service';
 import {OrderHttpService} from '../services/order-http.service';
 
 @Component({

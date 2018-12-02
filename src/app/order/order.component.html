@@ -1,5 +1,11 @@
-<button (click)="sendOrder()">Send Order</button>
+<div class="btn-group" role="group" aria-label="Basic example">
+  <button (click)="getOrders()">Get all orders</button>
+  <button (click)="getOrders()">Add new order</button>
+</div>
 
+<div>
+  <button (click)="sendOrder()">Send Order</button>
+</div>
 <div>
   <table class="table table-hover">
     <thead class="thead-dark">
@@ -30,4 +36,4 @@
   </table>
 </div>
 
-<button (click)="getOrders()">Get all orders</button>
+

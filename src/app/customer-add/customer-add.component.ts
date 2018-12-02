@@ -1,6 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {CustomerComponent} from '../customer/customer.component';
 import {CustomerHttpService} from '../services/customer-http.service';
 import {Customer} from '../model/customer';
 import {CustomerType} from '../model/customer-type';
@@ -15,6 +14,8 @@ export class CustomerAddComponent implements OnInit {
   customerTypes = new Array();
   customerForm: FormGroup;
   newCustomer = new Customer();
+  @Output()
+  eventForm = new EventEmitter<boolean>();
 
 
   constructor(private customerHttpService: CustomerHttpService) {
@@ -46,7 +47,7 @@ export class CustomerAddComponent implements OnInit {
     this.newCustomer.customerType = this.customerForm.value.customerType;
     this.customerHttpService.postCustomer(this.newCustomer).subscribe(status => console.log(status));
     this.customerForm.reset();
-    CustomerComponent.getCustomers();
+    this.eventForm.emit(true);
   }
 
 }
