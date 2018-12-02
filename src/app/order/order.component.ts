@@ -24,9 +24,9 @@ export class OrderComponent implements OnInit {
     this.getOrders();
   }
 
-  sendOrder() {
+  /*sendOrder() {
     this.orderHttpService.postOrder(this.order).subscribe(status => console.log(status));
-  }
+  }*/
 
   getOrders() {
     this.orderHttpService.getAllOrders().subscribe(data => {
@@ -36,7 +36,7 @@ export class OrderComponent implements OnInit {
 }
 
 
-}
+
 
 
 
