@@ -28,8 +28,6 @@ import {LoginComponent} from './login/login.component';
     OrderComponent,
     CustomerComponent,
     OrderEditComponent,
-    CustomerEditComponent,
-    CustomerListComponent,
     CustomerAddComponent,
     LoginComponent
   ],

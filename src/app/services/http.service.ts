@@ -15,8 +15,8 @@ export class HttpService {
   constructor(private http: HttpClient) {
   }
 
-  postAddProduct(product: Product): Observable<OrderStatus> {
-    return this.http.post<OrderStatus>(this.magazineUrl + '/magazine/products/add/new', product);
+  postAddOrSaveProduct(product: Product): Observable<OrderStatus> {
+    return this.http.post<OrderStatus>(this.magazineUrl + '/magazine/products/save', product);
   }
 
   getAllProducts(): Observable<Array<Product>> {
