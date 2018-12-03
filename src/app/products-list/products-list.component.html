@@ -24,15 +24,19 @@
       <td style="text-align: right">{{product.stock}}</td>
       <td style="text-align: center">{{product.price.toFixed(2) | transformPrice:'zł'}}</td>
       <td style="text-align: center">{{product.supplier}}</td>
-      <td><button [routerLink]="[product.id]">Edit</button></td>
-      <td><a routerLink="/delete/{{product.id}}">Delete</a></td>
+      <td>
+        <button [routerLink]="edit/[product]">Edit</button>
+      </td>
+      <td>
+        <button [routerLink]="[product.id]">Delete</button>
+      </td>
     </tr>
     </tbody>
   </table>
 </div>
 <div>
   <button (click)="getProducts()">Show all products</button>
-  <app-products></app-products>
+  <app-products-add></app-products-add>
 </div>
 
 

@@ -27,7 +27,7 @@ export class CustomerHttpService {
   }
 
   deleteCustomer(customer: Customer): Observable<CustomerStatus> {
-    console.log('Delete customer id: ' + customer.id);
+    console.log('Delete customer idToDelete: ' + customer.id);
     this.urlDelete = this.deleteCustomerUrl + '/' + customer.id;
     console.log(this.urlDelete);
     return this.http.post<CustomerStatus>(this.urlDelete, customer);

@@ -11,14 +11,6 @@ export class HttpService {
 
   private magazineUrl = 'http://localhost:8080';
 
-  constructor(private http: HttpClient) {
-  }
-
-  postAddOrSaveProduct(product: Product): Observable<OrderStatus> {
-    return this.http.post<OrderStatus>(this.magazineUrl + '/magazine/products/save', product);
-  }
-
-  getAllProducts(): Observable<Array<Product>> {
-    return this.http.get<Array<Product>>(this.magazineUrl + '/magazine/products/all');
+  constructor() {
   }
 }

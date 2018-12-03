@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {HttpService} from '../services/http.service';
 import {Product} from '../model/product';
+import {ProductsHttpService} from '../services/products-http.service';
 
 @Component({
   selector: 'app-products-edit',
@@ -17,7 +18,7 @@ export class ProductsEditComponent implements OnInit {
   package_units = ['Karton', 'Folia', 'Baniak', 'Paleta', 'Box'];
   vats = ['VAT_23', 'VAT_8', 'VAT_0'];
 
-  constructor(private httpService: HttpService) {
+  constructor(private productsService: ProductsHttpService) {
   }
 
   ngOnInit() {
@@ -50,7 +51,7 @@ export class ProductsEditComponent implements OnInit {
       this.contactForm.value.number_in_package, this.contactForm.value.height, this.contactForm.value.weight, this.contactForm.value.length,
       this.contactForm.value.supplier, this.contactForm.value.stock, this.contactForm.value.price, this.contactForm.value.vat);
 
-    this.httpService.postAddOrSaveProduct(this.product).subscribe(status => console.log(status));
+    this.productsService.postAddOrSaveProduct(this.product).subscribe(status => console.log(status));
     console.log(this.product);
   }
 
