@@ -1,0 +1,16 @@
+<ng-container *ngIf="message; else question">
+  <div class="alert alert-success" role="alert">
+    {{message}}
+  </div>
+</ng-container>
+<ng-template #question>
+<div class="alert alert-danger" role="alert">
+  You are sure that you want to delete the product with id={{product.id}} name={{product.name}}
+</div>
+</ng-template>
+
+<button type="button" class="btn btn-danger" (click)="deleteProduct()">DELETE</button>
+<button type="button" class="btn btn-info" routerLink="/products">SORRY, back to the list</button>
+
+
+
