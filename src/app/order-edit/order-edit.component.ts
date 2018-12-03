@@ -7,6 +7,7 @@ import {Product} from '../model/product';
 import {Customer} from '../model/customer';
 import {FormControl, FormGroup} from '@angular/forms';
 import {CustomerType} from '../model/customer-type';
+import {ProductsHttpService} from '../services/products-http.service';
 
 @Component({
   selector: 'app-order-edit',
@@ -20,11 +21,11 @@ export class OrderEditComponent implements OnInit {
   orderItems = new Array<OrderItem>();
   orderForm: FormGroup;
 
-  constructor(private httpService: HttpService, private customerService: CustomerHttpService) {
+  constructor(private productsService: ProductsHttpService, private customerService: CustomerHttpService) {
   }
 
   ngOnInit() {
-    this.httpService.getAllProducts().subscribe(data => this.productList = data.slice());
+    this.productsService.getAllProducts().subscribe(data => this.productList = data.slice());
     this.customerService.getAllCustomers().subscribe(data => this.customerList = data.slice());
     this.orderForm = new FormGroup({
       customer: new FormControl(null)
@@ -36,7 +37,7 @@ export class OrderEditComponent implements OnInit {
   }
 
   onSubmit() {
-    /*this.newCustomer.id = null;
+    /*this.newCustomer.idToDelete = null;
     this.newCustomer.firstName = this.customerForm.value.firstName;
     this.newCustomer.lastName = this.customerForm.value.lastName;
     this.newCustomer.companyName = this.customerForm.value.companyName;
