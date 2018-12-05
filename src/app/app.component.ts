@@ -8,6 +8,12 @@ import {HttpService} from './services/http.service';
 })
 export class AppComponent {
 
+  twoWayBinding = '';
+
   constructor(private httpService: HttpService) {
+  }
+
+  toFocus() {
+    this.twoWayBinding = 'Siema tu focus';
   }
 }
