@@ -12,8 +12,13 @@
     <a class="nav-link" href="#" routerLink="/customers">Customers</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link disabled" href="#" routerLink="/login">Log in</a>
+    <a class="nav-link" href="#" routerLink="/login">Log in</a>
   </li>
 </ul>
 <div><p></p></div>
+
+<div>
+  <input [(ngModel)]="twoWayBinding">
+  {{twoWayBinding}}
+</div>
 <router-outlet></router-outlet>
