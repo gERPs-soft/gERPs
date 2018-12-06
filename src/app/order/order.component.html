@@ -3,8 +3,7 @@
   <button (click)="addOrder()">Add new order</button>
 </div>
 <div *ngIf="showOrderForm">
-  <app-order-edit (eventForm)="hideForm($event)"
-                  [initOrder]="showOrderForm"></app-order-edit>
+  <app-order-edit (eventForm)="hideForm($event)"></app-order-edit>
 </div>
 
 <div>

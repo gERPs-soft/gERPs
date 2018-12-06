@@ -3,9 +3,10 @@ import {CustomerHttpService} from '../services/customer-http.service';
 import {OrderItem} from '../model/order-item';
 import {Product} from '../model/product';
 import {Customer} from '../model/customer';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {ProductsHttpService} from '../services/products-http.service';
 import {Order} from '../model/order';
+import {Item} from '../model/item';
 
 @Component({
   selector: 'app-order-edit',
@@ -15,9 +16,10 @@ import {Order} from '../model/order';
 export class OrderEditComponent implements OnInit {
 
   productList = new Array<Product>();
+  chosenProducts = new Array<Item>();
   customerList = new Array<Customer>();
   orderItems = new Array<OrderItem>();
-  orderForm: FormGroup;
+  orderForm: FormArray;
   newOrder: Order;
   @Input()
   initOrder: Order;
@@ -32,8 +34,14 @@ export class OrderEditComponent implements OnInit {
   ngOnInit() {
     this.productsService.getAllProducts().subscribe(data => this.productList = data.slice());
     this.customerService.getAllCustomers().subscribe(data => this.customerList = data.slice());
-    this.orderForm = new FormGroup({
-      customer: new FormControl(null)
+    this.orderForm = new FormArray({
+      itemsList: new FormGroup({
+        customer: new FormControl(),
+        items: new FormControl()
+      })
+
+      // mocked sellerId
+      /*seller: new FormControl(1)*/
     });
   }
 
@@ -41,8 +49,15 @@ export class OrderEditComponent implements OnInit {
     this.orderItems.push(new OrderItem(product.id, quantity, product.price));
   }
 
-  onSubmit() {
+  chooseProduct(product: Product, quantity: number) {
+    this.chosenProducts.push(new Item(product, quantity));
+  }
 
+  deleteChosen(index) {
+    this.chosenProducts.splice(index, 1);
+  }
+
+  onSubmit() {
 
 
     /*  this.newCustomer.firstName = this.customerForm.value.firstName;
