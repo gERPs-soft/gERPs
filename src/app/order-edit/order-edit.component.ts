@@ -1,13 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {OrderHttpService} from '../services/order-http.service';
-import {HttpService} from '../services/http.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CustomerHttpService} from '../services/customer-http.service';
 import {OrderItem} from '../model/order-item';
 import {Product} from '../model/product';
 import {Customer} from '../model/customer';
 import {FormControl, FormGroup} from '@angular/forms';
-import {CustomerType} from '../model/customer-type';
 import {ProductsHttpService} from '../services/products-http.service';
+import {Order} from '../model/order';
 
 @Component({
   selector: 'app-order-edit',
@@ -20,6 +18,13 @@ export class OrderEditComponent implements OnInit {
   customerList = new Array<Customer>();
   orderItems = new Array<OrderItem>();
   orderForm: FormGroup;
+  newOrder: Order;
+  @Input()
+  initOrder: Order;
+
+  @Output()
+  eventForm = new EventEmitter<boolean>();
+
 
   constructor(private productsService: ProductsHttpService, private customerService: CustomerHttpService) {
   }
@@ -37,8 +42,10 @@ export class OrderEditComponent implements OnInit {
   }
 
   onSubmit() {
-    /*this.newCustomer.idToDelete = null;
-    this.newCustomer.firstName = this.customerForm.value.firstName;
+
+
+
+    /*  this.newCustomer.firstName = this.customerForm.value.firstName;
     this.newCustomer.lastName = this.customerForm.value.lastName;
     this.newCustomer.companyName = this.customerForm.value.companyName;
     this.newCustomer.address = this.customerForm.value.address;
@@ -46,8 +53,15 @@ export class OrderEditComponent implements OnInit {
     this.newCustomer.phoneNumber = this.customerForm.value.phoneNumber;
     this.newCustomer.email = this.customerForm.value.email;
     this.newCustomer.customerType = this.customerForm.value.customerType;
-    this.customerHttpService.postCustomer(this.newCustomer).subscribe(status => console.log(status));
-    this.customerForm.reset();
-    this.eventForm.emit(true);*/
+    if (this.initCustomer) {
+      this.newCustomer.id = this.initCustomer.id;
+    } else {
+      this.newCustomer.id = null;
+    }
+    this.customerHttpService.postCustomer(this.newCustomer).subscribe(() => this.eventForm.emit(true));*/
+  }
+
+  cancel() {
+    this.eventForm.emit(true);
   }
 }

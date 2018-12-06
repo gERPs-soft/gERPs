@@ -38,19 +38,18 @@
     <ng-container
       *ngIf="initCustomer.id; then editButton; else addButton">
     </ng-container>
-
-    <ng-template #editButton>
-      <p>
+    <p>
+      <ng-template #editButton>
         <button type="submit" (click)="editCustomer()">Edit customer</button>
-        <button type="reset">Reset</button>
-      </p>
-    </ng-template>
-    <ng-template #addButton>
-      <p>
+      </ng-template>
+
+      <ng-template #addButton>
         <button type="submit">Add customer</button>
-        <button type="reset">Reset</button>
-      </p>
-    </ng-template>
+      </ng-template>
+
+      <button type="reset">Reset</button>
+      <button (click)="cancel()">Cancel</button>
+    </p>
 
   </div>
 </form>

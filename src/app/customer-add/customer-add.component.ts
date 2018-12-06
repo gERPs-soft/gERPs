@@ -51,6 +51,9 @@ export class CustomerAddComponent implements OnInit {
       this.newCustomer.id = null;
     }
     this.customerHttpService.postCustomer(this.newCustomer).subscribe(() => this.eventForm.emit(true));
+  }
 
+  cancel() {
+    this.eventForm.emit(true);
   }
 }
