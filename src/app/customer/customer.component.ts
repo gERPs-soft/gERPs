@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CustomerHttpService} from '../services/customer-http.service';
 import {Customer} from '../model/customer';
+import {CustomerType} from '../model/customer-type';
 
 
 @Component({
@@ -9,7 +10,7 @@ import {Customer} from '../model/customer';
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
-
+  customerToEdit: Customer;
   customers: Array<Customer>;
   @Input()
   showCustomerForm: boolean;
@@ -18,7 +19,7 @@ export class CustomerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.showCustomerForm = true;
+    this.showCustomerForm = false;
     this.getCustomers();
   }
 
@@ -29,16 +30,23 @@ export class CustomerComponent implements OnInit {
   }
 
   addCustomerForm() {
-    this.showCustomerForm = false;
+    this.showCustomerForm = true;
+    this.customerToEdit = new Customer();
+    this.customerToEdit.customerType = CustomerType.BUSINESS;
   }
 
   hideForm(task: boolean) {
-    this.ngOnInit();
+    this.getCustomers();
+    this.showCustomerForm = false;
   }
 
   deleteCustomer(customer: Customer) {
-    this.customerHttpService.deleteCustomer(customer);
-    this.getCustomers();
+    this.customerHttpService.deleteCustomer(customer).subscribe(() => this.getCustomers());
+  }
+
+  editCustomer(customer) {
+    this.showCustomerForm = true;
+    this.customerToEdit = customer;
   }
 }
 
