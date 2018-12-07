@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {HttpService} from '../services/http.service';
 import {Product} from '../model/product';
 import {ProductsHttpService} from '../services/products-http.service';
+import {Customer} from '../model/customer';
+import {ProductGroup} from '../model/product-group';
 
 @Component({
   selector: 'app-products-edit',
@@ -11,8 +13,15 @@ import {ProductsHttpService} from '../services/products-http.service';
 })
 export class ProductsEditComponent implements OnInit {
 
-  contactForm: FormGroup;
-  product: Product;
+  productForm: FormGroup;
+  newProduct = new Product();
+
+  @Output()
+  eventForm = new EventEmitter<boolean>();
+  @Input()
+  initProduct: Product;
+  @Input()
+  products_group: Array<ProductGroup>;
 
   unitOfMass = ['szt', 'litr', 'tona', 'opakowanie', 'bańka'];
   package_units = ['Karton', 'Folia', 'Baniak', 'Paleta', 'Box'];
@@ -22,37 +31,52 @@ export class ProductsEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.contactForm = new FormGroup({
-      id: new FormControl(null),
-      assort_index: new FormControl(null),
-      name: new FormControl(null),
-      product_group: new FormControl(null),
-      unitOfMasure: new FormControl(this.unitOfMass[0]),
-      barcode: new FormControl(null),
-      weight_unit: new FormControl(null),
-      package_unit: new FormControl(this.package_units[0]),
-      number_in_package: new FormControl(null),
-      height: new FormControl(null),
-      weight: new FormControl(null),
-      length: new FormControl(null),
-      supplier: new FormControl(null),
-      stock: new FormControl(null),
-      price: new FormControl(null),
-      vat: new FormControl(this.vats[0])
+    this.productForm = new FormGroup({
+      assort_index: new FormControl(this.initProduct.assort_index),
+      name: new FormControl(this.initProduct.name),
+      product_group: new FormControl(this.initProduct.product_group),
+      unitOfMasure: new FormControl(this.initProduct.unitOfMasure),
+      barcode: new FormControl(this.initProduct.barcode),
+      weight_unit: new FormControl(this.initProduct.weight_unit),
+      package_unit: new FormControl(this.initProduct.package_unit),
+      number_in_package: new FormControl(this.initProduct.number_in_package),
+      height: new FormControl(this.initProduct.height),
+      weight: new FormControl(this.initProduct.weight),
+      length: new FormControl(this.initProduct.length),
+      supplier: new FormControl(this.initProduct.supplier),
+      stock: new FormControl(this.initProduct.stock),
+      price: new FormControl(this.initProduct.price),
+      vat: new FormControl(this.initProduct.vat)
     });
   }
 
   onSubmit() {
-    console.log(this.contactForm);
-    this.product = new Product(this.contactForm.value.id, this.contactForm.value.assort_index, this.contactForm.value.name,
-      this.contactForm.value.product_group,
-      this.contactForm.value.unitOfMasure, this.contactForm.value.barcode, this.contactForm.value.weight_unit,
-      this.contactForm.value.package_unit,
-      this.contactForm.value.number_in_package, this.contactForm.value.height, this.contactForm.value.weight, this.contactForm.value.length,
-      this.contactForm.value.supplier, this.contactForm.value.stock, this.contactForm.value.price, this.contactForm.value.vat);
+    if (this.initProduct) {
+      this.newProduct.id = this.initProduct.id;
+    } else {
+      this.newProduct.id = null;
+    }
+    this.newProduct.assort_index = this.productForm.value.assort_index;
+    this.newProduct.name = this.productForm.value.name;
+    this.newProduct.product_group = this.productForm.value.product_group;
+    this.newProduct.unitOfMasure = this.productForm.value.unitOfMasure;
+    this.newProduct.barcode = this.productForm.value.barcode;
+    this.newProduct.weight_unit = this.productForm.value.weight_unit;
+    this.newProduct.package_unit = this.productForm.value.package_unit;
+    this.newProduct.number_in_package = this.productForm.value.number_in_package;
+    this.newProduct.height = this.productForm.value.height;
+    this.newProduct.weight = this.productForm.value.weight;
+    this.newProduct.length = this.productForm.value.length;
+    this.newProduct.supplier = this.productForm.value.supplier;
+    this.newProduct.stock = this.productForm.value.stock;
+    this.newProduct.price = this.productForm.value.price;
+    this.newProduct.vat = this.productForm.value.vat;
 
-    this.productsService.postAddOrSaveProduct(this.product).subscribe(status => console.log(status));
-    console.log(this.product);
+    this.productsService.postAddOrSaveProduct(this.newProduct).subscribe(status => {
+      console.log(status);
+      this.eventForm.emit(false);
+    });
+    console.log('Save product:' + this.newProduct.name);
   }
 
 }

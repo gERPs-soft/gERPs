@@ -36,4 +36,7 @@ export class Product {
     this.price = price;
     this.vat = vat;
   }
+
+  constructor() {
+  }
 }
