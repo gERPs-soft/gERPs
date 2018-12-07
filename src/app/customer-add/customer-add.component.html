@@ -35,12 +35,22 @@
       <option *ngFor="let type of customerTypes" [value]="type">{{type}}</option>
     </select>
 
-    <div>
+    <ng-container
+      *ngIf="initCustomer.id; then editButton; else addButton">
+    </ng-container>
+
+    <ng-template #editButton>
+      <p>
+        <button type="submit" (click)="editCustomer()">Edit customer</button>
+        <button type="reset">Reset</button>
+      </p>
+    </ng-template>
+    <ng-template #addButton>
       <p>
         <button type="submit">Add customer</button>
         <button type="reset">Reset</button>
       </p>
-    </div>
+    </ng-template>
 
   </div>
 </form>

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {CustomerHttpService} from '../services/customer-http.service';
 import {Customer} from '../model/customer';
@@ -15,29 +15,29 @@ export class CustomerAddComponent implements OnInit {
 
   customerForm: FormGroup;
   newCustomer = new Customer();
+  @Input()
+  initCustomer: Customer;
   @Output()
   eventForm = new EventEmitter<boolean>();
-
 
   constructor(private customerHttpService: CustomerHttpService) {
   }
 
   ngOnInit() {
     this.customerForm = new FormGroup({
-      firstName: new FormControl(null),
-      lastName: new FormControl(null),
-      companyName: new FormControl(null),
-      address: new FormControl(null),
-      nip: new FormControl(null),
-      phoneNumber: new FormControl(null),
-      email: new FormControl(null),
-      customerType: new FormControl(CustomerType.BUSINESS.valueOf()),
+      firstName: new FormControl(this.initCustomer.firstName),
+      lastName: new FormControl(this.initCustomer.lastName),
+      companyName: new FormControl(this.initCustomer.companyName),
+      address: new FormControl(this.initCustomer.address),
+      nip: new FormControl(this.initCustomer.nip),
+      phoneNumber: new FormControl(this.initCustomer.phoneNumber),
+      email: new FormControl(this.initCustomer.email),
+      customerType: new FormControl(this.initCustomer.customerType),
     });
     this.customerTypes = Object.keys(CustomerType);
   }
 
   onSubmit() {
-    this.newCustomer.id = null;
     this.newCustomer.firstName = this.customerForm.value.firstName;
     this.newCustomer.lastName = this.customerForm.value.lastName;
     this.newCustomer.companyName = this.customerForm.value.companyName;
@@ -46,9 +46,12 @@ export class CustomerAddComponent implements OnInit {
     this.newCustomer.phoneNumber = this.customerForm.value.phoneNumber;
     this.newCustomer.email = this.customerForm.value.email;
     this.newCustomer.customerType = this.customerForm.value.customerType;
-    this.customerHttpService.postCustomer(this.newCustomer).subscribe(status => console.log(status));
-    this.customerForm.reset();
-    this.eventForm.emit(true);
-  }
+    if (this.initCustomer) {
+      this.newCustomer.id = this.initCustomer.id;
+    } else {
+      this.newCustomer.id = null;
+    }
+    this.customerHttpService.postCustomer(this.newCustomer).subscribe(() => this.eventForm.emit(true));
 
+  }
 }

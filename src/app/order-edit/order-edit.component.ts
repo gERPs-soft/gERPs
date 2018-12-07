@@ -33,7 +33,7 @@ export class OrderEditComponent implements OnInit {
   }
 
   addItem(product: Product, quantity: number) {
-    this.orderItems.push(new OrderItem(product, quantity));
+    this.orderItems.push(new OrderItem(product.id, quantity, product.price));
   }
 
   onSubmit() {
