@@ -12,6 +12,7 @@ import {CustomerType} from '../model/customer-type';
 export class CustomerAddComponent implements OnInit {
 
   customerTypes = new Array();
+
   customerForm: FormGroup;
   newCustomer = new Customer();
   @Output()
