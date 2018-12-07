@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {Product} from '../model/product';
 import {HttpClient} from '@angular/common/http';
 import {OrderStatus} from '../model/order-status';
+import {ProductGroup} from '../model/product-group';
 
 
 @Injectable({
@@ -30,5 +31,9 @@ export class ProductsHttpService {
 
   getAllProducts(): Observable<Array<Product>> {
     return this.http.get<Array<Product>>(this.magazineUrl + 'all');
+  }
+
+  getAllProductsGroup(): Observable<Array<ProductGroup>> {
+    return this.http.get<Array<ProductGroup>>(this.magazineUrl + 'all-group');
   }
 }

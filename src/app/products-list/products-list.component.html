@@ -1,4 +1,14 @@
 <div>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button (click)="getProducts()">Show all products</button>
+    <button (click)="addProductForm()">Add new product</button>
+  </div>
+</div>
+<div *ngIf="showProductForm">
+  <app-products-edit (eventForm)="hideForm($event)"
+                     [initProduct]="productToEdit" [products_group]="productsGroup"></app-products-edit>
+</div>
+<div>
   <table class="table table-hover">
     <thead class="thead-dark">
     <tr>
@@ -20,12 +30,12 @@
       <td>{{product.assort_index}}</td>
       <td>{{product.name}}</td>
       <td style="text-align: center">{{product.unitOfMasure}}</td>
-      <td style="text-align: center">{{product.product_group}}</td>
+      <td style="text-align: center">{{productsGroup[product.product_group-1].name}}</td>
       <td style="text-align: right">{{product.stock}}</td>
       <td style="text-align: center">{{product.price.toFixed(2) | transformPrice:'zł'}}</td>
       <td style="text-align: center">{{product.supplier}}</td>
       <td>
-        <button [routerLink]="edit/[product]">Edit</button>
+        <button (click)="editProduct(product)">Edit</button>
       </td>
       <td>
         <button [routerLink]="[product.id]">Delete</button>
@@ -33,10 +43,6 @@
     </tr>
     </tbody>
   </table>
-</div>
-<div>
-  <button (click)="getProducts()">Show all products</button>
-  <app-products-add></app-products-add>
 </div>
 
 
