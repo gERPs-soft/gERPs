@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {HttpService} from './services/http.service';
 import {HttpClientModule} from '@angular/common/http';
-import { ProductsAddComponent } from './products-add/products-add.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductsEditComponent } from './products-edit/products-edit.component';
 import { TransformPricePipe } from './shared/transform-price.pipe';
@@ -22,7 +21,6 @@ import {ProductsComponent} from './products/products.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ProductsAddComponent,
     ProductsListComponent,
     ProductsEditComponent,
     ProductDeleteComponent,
