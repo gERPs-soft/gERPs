@@ -16,21 +16,18 @@ export class ProductsHttpService {
   constructor(private http: HttpClient) {
   }
 
-  deleteProductById(id: number): Observable<Product> {
-    console.log('DeleteProductById=' + id);
-    return this.http.delete<Product>(this.magazineUrl + id);
-  }
-
   getProductById(id: number): Observable<Product> {
     return this.http.get<Product>(this.magazineUrl + '' + id);
   }
-
+  getAllProducts(): Observable<Array<Product>> {
+    return this.http.get<Array<Product>>(this.magazineUrl + 'all');
+  }
   postAddOrSaveProduct(product: Product): Observable<OrderStatus> {
     return this.http.post<OrderStatus>(this.magazineUrl + 'save', product);
   }
-
-  getAllProducts(): Observable<Array<Product>> {
-    return this.http.get<Array<Product>>(this.magazineUrl + 'all');
+  deleteProductById(id: number): Observable<Product> {
+    console.log('DeleteProductById=' + id);
+    return this.http.delete<Product>(this.magazineUrl + id);
   }
 
   getAllProductsGroup(): Observable<Array<ProductGroup>> {

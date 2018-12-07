@@ -19,6 +19,7 @@ export class ProductsAddComponent implements OnInit {
 
   ngOnInit() {
   }
+
 /*
   public addProduct() {
     this.productsService.postAddOrSaveProduct(this.product).subscribe(status => console.log(status));
