@@ -1,34 +1,5 @@
-<form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+<form [formArrayName]="orderForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
-    <!--<div class="row">
-      <div class="col">
-        <label for="firstName">First Name:</label>
-        <input class="form-control form-control-sm" type="text" idToDelete="firstName" formControlName="firstName">
-      </div>
-      <div class="col">
-        <label for="lastName">Last name:</label>
-        <input class="form-control form-control-sm" type="text" idToDelete="lastName" formControlName="lastName">
-      </div>
-    </div>
-
-    <label for="companyName">Company Name:</label>
-    <input class="form-control form-control-sm" type="text" idToDelete="companyName" formControlName="companyName">
-
-    <label for="address">Address:</label>
-    <input class="form-control form-control-sm" type="text" idToDelete="address" formControlName="address">
-
-    <div class="row">
-      <div class="col">
-        <label for="phoneNumber">Phone Number:</label>
-        <input class="form-control form-control-sm" type="text" idToDelete="phoneNumber" formControlName="phoneNumber">
-      </div>
-      <div class="col">
-        <label for="nip">NIP:</label>
-        <input class="form-control form-control-sm" type="text" idToDelete="nip" formControlName="nip">
-      </div>
-    </div>
-    <label for="email">Email:</label>
-    <input class="form-control form-control-sm" type="text" idToDelete="email" formControlName="email">-->
 
     <label for="customer">Customer:</label>
     <select id="customer" formControlName="customer">
@@ -36,12 +7,106 @@
       ' ' + customer.firstName + ' ' + customer.lastName}}</option>
     </select>
 
-    <div>
-      <p>
-        <button type="submit">Add order</button>
-        <button type="reset">Reset</button>
-      </p>
+    <div *ngIf="chosenProducts.length">
+      <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+          <th class="tabHeader" scope="col">#</th>
+          <th class="tabHeader" scope="col">Product name</th>
+          <th class="tabHeader" scope="col">Price</th>
+          <th class="tabHeader" scope="col">Quantity</th>
+          <th class="tabHeader" scope="col"></th>
+          <th class="tabHeader" scope="col"></th>
+          <th class="tabHeader" scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr *ngFor="let orderItem of chosenProducts; let i = index;" id="itemsList" formGroupName="itemsList">
+          <td style="text-align: center">{{i + 1}}</td>
+          <td style="text-align: center" formControlName="productName">{{orderItem.product.name}}</td>
+          <td style="text-align: center" formControlName="productPrice">{{orderItem.product.price}}</td>
+          <td style="text-align: center" formControlName="quantity">{{orderItem.quantity}}</td>
+          <td>
+            <button (click)="deleteChosen(i)">Delete</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
+
+
+    <table class="table table-hover">
+      <thead class="thead-dark">
+      <tr>
+        <th class="tabHeader" scope="col">#</th>
+        <th class="tabHeader" scope="col">Product name</th>
+        <th class="tabHeader" scope="col">Price</th>
+        <th class="tabHeader" scope="col"></th>
+        <th class="tabHeader" scope="col">Quantity</th>
+        <th class="tabHeader" scope="col"></th>
+        <th class="tabHeader" scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let product of productList; let i = index;">
+        <td style="text-align: center">{{i + 1}}</td>
+        <td style="text-align: center">{{product.name}}</td>
+        <td style="text-align: center">{{product.price}}</td>
+        <td>
+          <button>-</button>
+        </td>
+        <td style="text-align: center">{{8}}</td>
+        <td>
+          <button>+</button>
+        </td>
+        <td>
+          <button (click)="chooseProduct(product, 8)">Add to chart</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+
+    <p>
+      <button type="submit">Add Order</button>
+      <button (click)="cancel()">Cancel</button>
+    </p>
+
+    <!--
+        <label for="companyName">Company Name:</label>
+        <input class="form-control form-control-sm" type="text" idToDelete="companyName" formControlName="companyName">
+
+        <label for="address">Address:</label>
+        <input class="form-control form-control-sm" type="text" idToDelete="address" formControlName="address">
+
+        <div class="row">
+          <div class="col">
+            <label for="phoneNumber">Phone Number:</label>
+            <input class="form-control form-control-sm" type="text" idToDelete="phoneNumber" formControlName="phoneNumber">
+          </div>
+          <div class="col">
+            <label for="nip">NIP:</label>
+            <input class="form-control form-control-sm" type="text" idToDelete="nip" formControlName="nip">
+          </div>
+        </div>
+        <label for="email">Email:</label>
+        <input class="form-control form-control-sm" type="text" idToDelete="email" formControlName="email">-->
+
+
+    <!--<div class="form-group row">
+      <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+      </div>
+    </div>
+
+    <label for="customer">Customer:</label>
+    <select id="customer" formControlName="customer">
+      <option *ngFor="let customer of customerList" [value]="customer">{{customer.companyName +
+      ' ' + customer.firstName + ' ' + customer.lastName}}</option>
+    </select>-->
+
 
   </div>
 </form>

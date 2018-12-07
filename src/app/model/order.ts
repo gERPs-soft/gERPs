@@ -9,7 +9,8 @@ export class Order {
   orderDate: string;
   orderStatus: string;
 
-  constructor(orderId: number, sellerId: number, customerId: number, orderItemsList: Array<OrderItem>, endDate: string, orderDate: string, orderStatus: string) {
+  constructor(orderId: number, sellerId: number, customerId: number, orderItemsList: Array<OrderItem>,
+              endDate: string, orderDate: string, orderStatus: string) {
     this.orderId = orderId;
     this.sellerId = sellerId;
     this.customerId = customerId;

@@ -11,6 +11,7 @@ import {Order} from '../model/order';
 export class OrderComponent implements OnInit {
   orders: Array<Order>;
   showOrderForm: boolean;
+
   /*itema: OrderItem = new OrderItem(1, 64);
   itemb: OrderItem = new OrderItem(2, 660);
   items: Array<OrderItem> = [this.itema, this.itemb];
@@ -20,7 +21,7 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.showOrderForm = true;
+    this.showOrderForm = false;
     this.getOrders();
   }
 
@@ -32,6 +33,19 @@ export class OrderComponent implements OnInit {
     this.orderHttpService.getAllOrders().subscribe(data => {
       this.orders = data.slice();
     });
+  }
+
+  addOrder() {
+    this.showOrderForm = true;
+  }
+
+  sendOrder() {
+
+  }
+
+  hideForm(task: boolean) {
+    this.getOrders();
+    this.showOrderForm = false;
   }
 }
 

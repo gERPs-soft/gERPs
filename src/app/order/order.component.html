@@ -1,13 +1,11 @@
 <div class="btn-group" role="group" aria-label="Basic example">
   <button (click)="getOrders()">Get all orders</button>
-  <button (click)="addOrders()">Add new order</button>
+  <button (click)="addOrder()">Add new order</button>
 </div>
-<div>
-  <app-order-edit [hidden]="showOrderForm" (eventForm)="hideForm($event)"></app-order-edit>
+<div *ngIf="showOrderForm">
+  <app-order-edit (eventForm)="hideForm($event)"></app-order-edit>
 </div>
-<div>
-  <button (click)="sendOrder()">Send Order</button>
-</div>
+
 <div>
   <table class="table table-hover">
     <thead class="thead-dark">
@@ -31,8 +29,12 @@
       <td style="text-align: center">{{order.orderDate}}</td>
       <td style="text-align: center">{{order.orderStatus}}</td>
       <td style="text-align: center">{{order.sendDate}}</td>
-      <td><button [routerLink]="[order.id]">Edit</button></td>
-      <td><a routerLink="/delete/{{order.id}}">Delete</a></td>
+      <td>
+        <button (click)="editOrder(customer)">Edit</button>
+      </td>
+      <td>
+        <button (click)="deleteCustomer(customer)">Delete</button>
+      </td>
     </tr>
     </tbody>
   </table>
