@@ -7,6 +7,7 @@ import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {ProductsHttpService} from '../services/products-http.service';
 import {Order} from '../model/order';
 import {Item} from '../model/item';
+import {OrderHttpService} from '../services/order-http.service';
 
 @Component({
   selector: 'app-order-edit',
@@ -16,10 +17,11 @@ import {Item} from '../model/item';
 export class OrderEditComponent implements OnInit {
 
   productList = new Array<Product>();
+  itemsList = new Array<Item>();
   chosenProducts = new Array<Item>();
   customerList = new Array<Customer>();
-  orderItems = new Array<OrderItem>();
-  orderForm: FormArray;
+  private orderItemsList: OrderItem[];
+  orderForm: FormGroup;
   newOrder: Order;
   @Input()
   initOrder: Order;
@@ -28,52 +30,63 @@ export class OrderEditComponent implements OnInit {
   eventForm = new EventEmitter<boolean>();
 
 
-  constructor(private productsService: ProductsHttpService, private customerService: CustomerHttpService) {
-  }
-
   ngOnInit() {
     this.productsService.getAllProducts().subscribe(data => this.productList = data.slice());
     this.customerService.getAllCustomers().subscribe(data => this.customerList = data.slice());
-    this.orderForm = new FormArray({
-      itemsList: new FormGroup({
-        customer: new FormControl(),
-        items: new FormControl()
-      })
-
-      // mocked sellerId
-      /*seller: new FormControl(1)*/
+    this.orderForm = new FormGroup({
+      customer: new FormControl(),
+      itemList: new FormArray([])
     });
   }
 
-  addItem(product: Product, quantity: number) {
-    this.orderItems.push(new OrderItem(product.id, quantity, product.price));
+  constructor(private productsService: ProductsHttpService,
+              private customerService: CustomerHttpService, private orderService: OrderHttpService) {
   }
 
-  chooseProduct(product: Product, quantity: number) {
-    this.chosenProducts.push(new Item(product, quantity));
+  loadItems(arr: Array<Product>) {
+    for (const a of arr) {
+      this.itemsList.push(new Item(a, 1));
+    }
+  }
+
+  chooseItem(item: Item) {
+    if (item.quantity > 0 && !this.chosenProducts.includes(item)) {
+      const arr = <FormArray>this.orderForm.get('itemList');
+      arr.push(new FormControl(null));
+      this.chosenProducts.push(item);
+    }
   }
 
   deleteChosen(index) {
     this.chosenProducts.splice(index, 1);
   }
 
-  onSubmit() {
-
-
-    /*  this.newCustomer.firstName = this.customerForm.value.firstName;
-    this.newCustomer.lastName = this.customerForm.value.lastName;
-    this.newCustomer.companyName = this.customerForm.value.companyName;
-    this.newCustomer.address = this.customerForm.value.address;
-    this.newCustomer.nip = this.customerForm.value.nip;
-    this.newCustomer.phoneNumber = this.customerForm.value.phoneNumber;
-    this.newCustomer.email = this.customerForm.value.email;
-    this.newCustomer.customerType = this.customerForm.value.customerType;
-    if (this.initCustomer) {
-      this.newCustomer.id = this.initCustomer.id;
-    } else {
-      this.newCustomer.id = null;
+  decreaseQuantity(item: Item) {
+    if (item.quantity > 0) {
+      item.quantity--;
     }
-    this.customerHttpService.postCustomer(this.newCustomer).subscribe(() => this.eventForm.emit(true));*/
+  }
+
+  increaseQuantity(item: Item) {
+    item.quantity++;
+  }
+
+  get items(): FormArray {
+    return this.orderForm.get('itemList') as FormArray;
+  }
+
+  getOrderItems(items: Array<Item>): Array<OrderItem> {
+    for (const item of items) {
+      this.orderItemsList.push(new OrderItem(item.product.id, item.quantity, item.product.price));
+    }
+    return this.orderItemsList;
+  }
+
+  onSubmit() {
+    this.newOrder.customerId = this.orderForm.get('customer').get('id').value;
+    this.newOrder.orderItemsList = this.getOrderItems(this.items.value);
+    this.newOrder.sellerId = 1;
+    this.orderService.postOrder(this.newOrder).subscribe(() => this.eventForm.emit(true));
   }
 
   cancel() {
