@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {SuppliersService} from '../services/suppliers.service';
 import {Supplier} from '../model/supplier';
 import {Product} from '../model/product';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-suppliers',
@@ -12,6 +13,9 @@ export class SuppliersComponent implements OnInit {
 
   @Input()
   showSuppliersForm: boolean;
+
+  @Input()
+  showDeleteMessage: boolean;
 
   supplierToEdit: Supplier;
   suppliers: Array<Supplier>;
@@ -26,6 +30,11 @@ export class SuppliersComponent implements OnInit {
 
   hideForm(event: boolean) {
     this.showSuppliersForm = event;
+    this.getSuppliers();
+  }
+
+  hideDel(event: boolean) {
+    this.showDeleteMessage = event;
     this.getSuppliers();
   }
 

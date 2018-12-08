@@ -1,16 +1,20 @@
+
 <div>
   <div class="btn-group" role="group" aria-label="Basic example">
     <button (click)="getSuppliers()">Show all suppliers</button>
     <button (click)="addSupplierForm()">Add new supplier</button>
   </div>
 </div>
+
 <div *ngIf="showSuppliersForm">
   <app-suppliers-edit (eventForm)="hideForm($event)"
                      [initSupplier]="supplierToEdit"></app-suppliers-edit>
 </div>
 <div>
+  <!--<app-suppliers-delete (eventForm)="hideDel($event)"></app-suppliers-delete>-->
   <router-outlet></router-outlet>
 </div>
+
 <div>
   <table class="table table-hover">
     <thead class="thead-dark">
@@ -20,12 +24,11 @@
       <th class="tabHeader" scope="col">NIP</th>
       <th class="tabHeader" scope="col">City</th>
       <th class="tabHeader" scope="col">Street</th>
-      <th class="tabHeader" scope="col">number</th>
+      <th class="tabHeader" scope="col">nr</th>
       <th class="tabHeader" scope="col">PostCode</th>
       <th class="tabHeader" scope="col">Phone</th>
       <th class="tabHeader" scope="col">email</th>
       <th class="tabHeader" scope="col">www</th>
-      <th class="tabHeader" scope="col">Bank</th>
       <th class="tabHeader" scope="col"></th>
       <th class="tabHeader" scope="col"></th>
     </tr>
@@ -42,7 +45,6 @@
       <td style="text-align: center">{{supplier.phone_number}}</td>
       <td style="text-align: left">{{supplier.email}}</td>
       <td style="text-align: left">{{supplier.www}}</td>
-      <td style="text-align: left">{{supplier.bank_supplier_name}}</td>
       <td>
         <button (click)="editSupplier(supplier)">Edit</button>
       </td>
@@ -53,6 +55,3 @@
     </tbody>
   </table>
 </div>
-
-
-

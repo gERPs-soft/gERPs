@@ -22,13 +22,13 @@ export class ProductDeleteComponent implements OnInit {
         this.product = value;
       });
     });
-
   }
 
   deleteProduct() {
     console.log('Delete product id ' + this.product.id + ' name ' + this.product.name);
     this.productsService.deleteProductById(this.product.id).subscribe(product => {
-      this.message = 'You deleted product id=' + this.product.id;
+      this.message = 'You deleted product id=' + product.id;
     });
+
   }
 }
