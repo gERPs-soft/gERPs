@@ -10,19 +10,21 @@
   <table class="table table-hover">
     <thead class="thead-dark">
     <tr>
-      <th class="tabHeader" scope="col">#</th>
+      <!--<th class="tabHeader" scope="col">#</th>-->
       <th class="tabHeader" scope="col">Order no.</th>
       <th class="tabHeader" scope="col">Customer</th>
       <th class="tabHeader" scope="col">Seller</th>
       <th class="tabHeader" scope="col">Order date</th>
       <th class="tabHeader" scope="col">Status</th>
       <th class="tabHeader" scope="col">Send date</th>
+      <th class="tabHeader" scope="col"></th>
+      <th class="tabHeader" scope="col"></th>
     </tr>
     </thead>
     <tbody id="searched_table">
 
     <tr *ngFor="let order of orders | sortIndex: 'orderDate'; let i = index;">
-      <td style="text-align: center">{{i + 1}}</td>
+      <!--<td style="text-align: center">{{i + 1}}</td>-->
       <td>{{order.orderId}}</td>
       <td>{{order.customerId}}</td>
       <td style="text-align: center">{{order.sellerId}}</td>

@@ -4,7 +4,7 @@ export class Order {
   orderId: number;
   sellerId: number;
   customerId: number;
-  orderItemsList: Array<OrderItem>;
+  items: Array<OrderItem>;
   endDate: string;
   orderDate: string;
   orderStatus: string;

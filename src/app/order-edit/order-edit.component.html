@@ -3,11 +3,10 @@
 
     <label for="customer">Customer:</label>
     <select id="customer" formControlName="customer">
-      <option *ngFor="let customer of customerList" [value]="customer">{{customer.id}}</option>
+      <option *ngFor="let customer of customerList" [value]="customer.id">{{customer.companyName + ' '
+      + customer.firstName + ' ' + customer.lastName}}</option>
     </select>
-
     <div *ngIf="chosenProducts.length">
-
       <table class="table table-hover">
         <thead class="thead-dark">
         <tr>
@@ -21,7 +20,6 @@
         </tr>
         </thead>
         <tbody>
-
         <tr *ngFor="let orderItem of chosenProducts; let i = index;">
           <td style="text-align: center">{{i + 1}}</td>
           <td style="text-align: center">{{orderItem.product.name}}</td>
@@ -31,53 +29,46 @@
             <button (click)="deleteChosen(i)">Delete</button>
           </td>
         </tr>
-
         </tbody>
       </table>
-
     </div>
-
-
-    <table class="table table-hover">
-      <thead class="thead-dark">
-      <tr>
-        <th class="tabHeader" scope="col">#</th>
-        <th class="tabHeader" scope="col">Product name</th>
-        <th class="tabHeader" scope="col">Price</th>
-
-        <th class="tabHeader" scope="col">Quantity</th>
-
-        <th class="tabHeader" scope="col"></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let item of itemsList; let i = index;">
-        <td style="text-align: center">{{i + 1}}</td>
-        <td style="text-align: center">{{item.product.name}}</td>
-        <td style="text-align: center">{{item.product.price}}</td>
-
-        <td style="text-align: center">
-          <button (click)="decreaseQuantity(item)">-</button>
-          {{item.quantity}}
-          <button
-            (click)="increaseQuantity(item)">+
-          </button>
-        </td>
-        <td>
-          <button (click)="chooseItem(item)">Add to chart</button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-
-    <p *ngIf="itemsList.length==0">
-      <button (click)="loadItems(productList)">Load items</button>
-    </p>
     <p>
       <button type="submit">Add Order</button>
       <button (click)="cancel()">Cancel</button>
     </p>
-
   </div>
 </form>
+
+<table class="table table-hover">
+  <thead class="thead-dark">
+  <tr>
+    <th class="tabHeader" scope="col">#</th>
+    <th class="tabHeader" scope="col">Product name</th>
+    <th class="tabHeader" scope="col">Price</th>
+    <th class="tabHeader" scope="col">Quantity</th>
+    <th class="tabHeader" scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of itemsList; let i = index;">
+    <td style="text-align: center">{{i + 1}}</td>
+    <td style="text-align: center">{{item.product.name}}</td>
+    <td style="text-align: center">{{item.product.price}}</td>
+
+    <td style="text-align: center">
+      <button (click)="decreaseQuantity(item)">-</button>
+      {{item.quantity}}
+      <button (click)="increaseQuantity(item)">+</button>
+    </td>
+    <td>
+      <button (click)="chooseItem(item)">Add to chart</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<p *ngIf="itemsList.length==0">
+  <button (click)="loadItems(productList)">Load items</button>
+</p>
+
 
