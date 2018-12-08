@@ -1,0 +1,16 @@
+<ng-container *ngIf="message; else question">
+  <div class="alert alert-success" role="alert">
+    {{message}}
+  </div>
+</ng-container>
+<ng-template #question>
+  <div class="alert alert-danger" role="alert">
+    Are you sure you want to delete the supplier {{supplier.name}}
+  </div>
+</ng-template>
+
+<button type="button" class="btn btn-danger" (click)="deleteSupplier()">DELETE</button>
+<button type="button" class="btn btn-info" routerLink="/suppliers">SORRY, back to the list</button>
+
+
+

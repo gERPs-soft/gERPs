@@ -1,6 +1,7 @@
 export class Supplier {
   id: number;
   name: string;
+  nip: string;
   city: string;
   street: string;
   street_number: string;

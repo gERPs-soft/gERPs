@@ -17,6 +17,9 @@ import {AppRoutingModule} from './app.routing.module';
 import {LoginComponent} from './login/login.component';
 import {ProductDeleteComponent} from './product-delete/product-delete.component';
 import {ProductsComponent} from './products/products.component';
+import {SuppliersComponent} from './suppliers/suppliers.component';
+import {SuppliersEditComponent} from './suppliers/suppliers-edit.component';
+import {SuppliersDeleteComponent} from './suppliers/suppliers-delete.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import {ProductsComponent} from './products/products.component';
     CustomerComponent,
     OrderEditComponent,
     CustomerAddComponent,
-    LoginComponent
+    LoginComponent,
+    SuppliersComponent,
+    SuppliersEditComponent,
+    SuppliersDeleteComponent
   ],
   imports: [
     BrowserModule,

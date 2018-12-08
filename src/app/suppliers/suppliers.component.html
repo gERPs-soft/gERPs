@@ -1,0 +1,58 @@
+<div>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button (click)="getSuppliers()">Show all suppliers</button>
+    <button (click)="addSupplierForm()">Add new supplier</button>
+  </div>
+</div>
+<div *ngIf="showSuppliersForm">
+  <app-suppliers-edit (eventForm)="hideForm($event)"
+                     [initSupplier]="supplierToEdit"></app-suppliers-edit>
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>
+<div>
+  <table class="table table-hover">
+    <thead class="thead-dark">
+    <tr>
+      <th class="tabHeader" scope="col">Lp</th>
+      <th class="tabHeader" scope="col">Name</th>
+      <th class="tabHeader" scope="col">NIP</th>
+      <th class="tabHeader" scope="col">City</th>
+      <th class="tabHeader" scope="col">Street</th>
+      <th class="tabHeader" scope="col">number</th>
+      <th class="tabHeader" scope="col">PostCode</th>
+      <th class="tabHeader" scope="col">Phone</th>
+      <th class="tabHeader" scope="col">email</th>
+      <th class="tabHeader" scope="col">www</th>
+      <th class="tabHeader" scope="col">Bank</th>
+      <th class="tabHeader" scope="col"></th>
+      <th class="tabHeader" scope="col"></th>
+    </tr>
+    </thead>
+    <tbody id="searched_table">
+    <tr *ngFor="let supplier of suppliers | sortIndex: 'name'; let i = index;">
+      <td style="text-align: center">{{i+1}}</td>
+      <td>{{supplier.name}}</td>
+      <td>{{supplier.nip}}</td>
+      <td style="text-align: left">{{supplier.city}}</td>
+      <td style="text-align: right">{{supplier.street}}</td>
+      <td style="text-align: left">{{supplier.street_number}}</td>
+      <td style="text-align: center">{{supplier.post_code}}</td>
+      <td style="text-align: center">{{supplier.phone_number}}</td>
+      <td style="text-align: left">{{supplier.email}}</td>
+      <td style="text-align: left">{{supplier.www}}</td>
+      <td style="text-align: left">{{supplier.bank_supplier_name}}</td>
+      <td>
+        <button (click)="editSupplier(supplier)">Edit</button>
+      </td>
+      <td>
+        <button [routerLink]="[supplier.id]">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+

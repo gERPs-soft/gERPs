@@ -9,7 +9,7 @@ import {OrderStatus} from '../model/order-status';
 })
 export class SuppliersService {
 
-  private supplierUrl = 'http://localhost:8080/magazine/suppliers';
+  private supplierUrl = 'http://localhost:8080/magazine/suppliers/';
 
   constructor(private http: HttpClient) {
   }
