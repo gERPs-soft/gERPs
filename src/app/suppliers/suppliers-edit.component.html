@@ -1,3 +1,85 @@
-<p>
-  suppliers-edit works!
-</p>
+<h4>Edit suppliers:</h4>
+<form [formGroup]="supplierForm" (ngSubmit)="onSubmit()">
+
+  <!--<div style="display: inline-grid; margin: 10px">-->
+  <div class="form-group">
+    <!--<label for="id">Id</label><input type="text" id="id" formControlName="id">-->
+    <div class="row">
+      <div class="col">
+        <label for="name">Name company</label>
+        <input class="form-control form-control-sm" type="text" id="name" formControlName="name"></div>
+      <div class="col">
+        <label for="nip">NIP</label>
+        <input class="form-control form-control-sm" type="text" id="nip" formControlName="nip"></div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="city">City</label>
+        <input class="form-control form-control-sm" type="text" id="city" formControlName="city"></div>
+
+      <div class="col">
+        <label for="street">Street</label>
+        <input class="form-control form-control-sm" type="text" id="street" formControlName="street">
+      </div>
+      <div class="col">
+        <label for="street_number">Street number</label>
+        <input class="form-control form-control-sm" type="text" id="street_number" formControlName="street_number">
+      </div>
+      <div class="col">
+        <label for="post_code">Post code</label>
+        <input class="form-control form-control-sm" type="text" id="post_code" formControlName="post_code">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="phone_number">Phone number</label>
+        <input class="form-control form-control-sm" type="text" id="phone_number" formControlName="phone_number">
+      </div>
+      <div class="col">
+        <label for="email">Email</label>
+        <input class="form-control form-control-sm" type="text" id="email" formControlName="email">
+      </div>
+      <div class="col">
+        <label for="www">WWW</label>
+        <input class="form-control form-control-sm" type="text" id="www" formControlName="www">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="representative_person">Representative person</label>
+        <input class="form-control form-control-sm" type="text" id="representative_person"
+               formControlName="representative_person">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="bank_supplier_name">Bank</label>
+        <input class="form-control form-control-sm" type="text" id="bank_supplier_name"
+               formControlName="bank_supplier_name">
+      </div>
+      <div class="col">
+        <label for="bank_supplier_account_number">Account number</label>
+        <input class="form-control form-control-sm" type="text" id="bank_supplier_account_number"
+               formControlName="bank_supplier_account_number">
+      </div>
+    </div>
+
+    <ng-container
+      *ngIf="initSupplier.id; then editSupplierButton; else addSupplierButton">
+    </ng-container>
+
+    <ng-template #editSupplierButton>
+      <p>
+        <button type="submit">Edit supplier</button>
+        <button type="reset">Reset</button>
+      </p>
+    </ng-template>
+    <ng-template #addSupplierButton>
+      <p>
+        <button type="submit">Add supplier</button>
+        <button type="reset">Reset</button>
+      </p>
+    </ng-template>
+  </div>
+
+</form>

@@ -1,9 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {HttpService} from '../services/http.service';
 import {Product} from '../model/product';
 import {ProductsHttpService} from '../services/products-http.service';
-import {Customer} from '../model/customer';
 import {ProductGroup} from '../model/product-group';
 
 @Component({
@@ -18,6 +16,7 @@ export class ProductsEditComponent implements OnInit {
 
   @Output()
   eventForm = new EventEmitter<boolean>();
+
   @Input()
   initProduct: Product;
   @Input()

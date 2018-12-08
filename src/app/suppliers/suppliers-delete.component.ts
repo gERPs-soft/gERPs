@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Supplier} from '../model/supplier';
 import {SuppliersService} from '../services/suppliers.service';
 import {ProductsHttpService} from '../services/products-http.service';
@@ -29,5 +29,6 @@ export class SuppliersDeleteComponent implements OnInit {
     this.suppliersService.deleteSupplierById(this.supplier.id).subscribe(supp => {
       this.message = 'You deleted product ' + this.supplier.name;
     });
+    /*this.eventForm.emit(false);*/
   }
 }
