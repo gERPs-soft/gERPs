@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {HttpService} from './services/http.service';
+import {ProductsHttpService} from './services/products-http.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +8,5 @@ import {HttpService} from './services/http.service';
 })
 export class AppComponent {
 
-  constructor(private httpService: HttpService) {
-  }
+  constructor() {}
 }

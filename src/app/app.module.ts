@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {HttpService} from './services/http.service';
 import {HttpClientModule} from '@angular/common/http';
-import { ProductsAddComponent } from './products-add/products-add.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductsEditComponent } from './products-edit/products-edit.component';
 import { TransformPricePipe } from './shared/transform-price.pipe';
@@ -18,11 +17,13 @@ import {AppRoutingModule} from './app.routing.module';
 import {LoginComponent} from './login/login.component';
 import {ProductDeleteComponent} from './product-delete/product-delete.component';
 import {ProductsComponent} from './products/products.component';
+import {SuppliersComponent} from './suppliers/suppliers.component';
+import {SuppliersEditComponent} from './suppliers/suppliers-edit.component';
+import {SuppliersDeleteComponent} from './suppliers/suppliers-delete.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductsAddComponent,
     ProductsListComponent,
     ProductsEditComponent,
     ProductDeleteComponent,
@@ -33,7 +34,10 @@ import {ProductsComponent} from './products/products.component';
     CustomerComponent,
     OrderEditComponent,
     CustomerAddComponent,
-    LoginComponent
+    LoginComponent,
+    SuppliersComponent,
+    SuppliersEditComponent,
+    SuppliersDeleteComponent
   ],
   imports: [
     BrowserModule,
