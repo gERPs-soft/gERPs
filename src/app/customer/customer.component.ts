@@ -16,6 +16,7 @@ export class CustomerComponent implements OnInit {
   showCustomerForm: boolean;
 
   sortedColumn = 'companyName';
+  howSort: boolean = true;
 
   constructor(private customerHttpService: CustomerHttpService) {
   }
@@ -31,8 +32,9 @@ export class CustomerComponent implements OnInit {
     });
   }
 
-  sortThisColum(columnName: string) {
+  sortThisColum(columnName: string, how: boolean) {
     this.sortedColumn = columnName;
+    this.howSort = !how;
   }
 
   addCustomerForm() {
