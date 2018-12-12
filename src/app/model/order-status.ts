@@ -1,7 +1,3 @@
-export class OrderStatus {
-  private deliveryTime: string;
-
-  constructor(deliveryTime: string) {
-    this.deliveryTime = deliveryTime;
-  }
+export enum OrderStatus {
+  DRAFT, CONFIRMED, SEND, CANCELLED
 }

@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {OrderHttpService} from '../services/order-http.service';
 import {OrderItem} from '../model/order-item';
 import {Order} from '../model/order';
+import {OrderStatus} from '../model/order-status';
+import {OrderStatusDetails} from '../model/order-status-details';
 
 @Component({
   selector: 'app-order',
@@ -11,6 +13,7 @@ import {Order} from '../model/order';
 export class OrderComponent implements OnInit {
   orders: Array<Order>;
   showOrderForm: boolean;
+  private orderStatusDetails = new OrderStatusDetails();
 
   /*itema: OrderItem = new OrderItem(1, 64);
   itemb: OrderItem = new OrderItem(2, 660);
@@ -39,8 +42,10 @@ export class OrderComponent implements OnInit {
     this.showOrderForm = true;
   }
 
-  sendOrder() {
-
+  cancelOrder(order: Order) {
+    this.orderStatusDetails.orderId = order.orderId;
+    this.orderStatusDetails.orderStatus = OrderStatus.CANCELLED;
+    this.orderHttpService.cancelOrder(this.orderStatusDetails).subscribe(() => this.getOrders());
   }
 
   hideForm(task: boolean) {
