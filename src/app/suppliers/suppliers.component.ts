@@ -20,6 +20,7 @@ export class SuppliersComponent implements OnInit {
   supplierToEdit: Supplier;
   suppliers: Array<Supplier>;
   sortedColumn = 'name';
+  howSort: boolean = true;
 
   constructor(private supplierService: SuppliersService) {
   }
@@ -29,8 +30,9 @@ export class SuppliersComponent implements OnInit {
     this.getSuppliers();
   }
 
-  sortThisColum(columnName: string) {
+  sortThisColum(columnName: string, how: boolean) {
     this.sortedColumn = columnName;
+    this.howSort = !how;
   }
 
   hideForm(event: boolean) {

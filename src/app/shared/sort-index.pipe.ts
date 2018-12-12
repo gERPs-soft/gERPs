@@ -5,16 +5,26 @@ import {Pipe, PipeTransform} from '@angular/core';
 })
 export class SortIndexPipe implements PipeTransform {
 
-  transform(value: Array<any>, args: string): Array<any> {
-    value = value || [];
+  transform(value: Array<any>, args1?: string, args2?: boolean): Array<any> {
+    value = value || [].reverse();
     return value.sort((a, b) => {
-      // if (a.assort_index.toLowerCase() > b.assort_index.toLowerCase()) {
-      if (a[args] > b[args]) {
-        return 1;
-      } else {
-        return -1;
+
+        if (args2 === true) {
+          if (a[args1] > b[args1]) {
+            return 1;
+          } else {
+            return -1;
+          }
+        } else {
+          if (a[args1] > b[args1]) {
+            return -1;
+          } else {
+            return 1;
+          }
+        }
       }
-    });
+    )
+      ;
   }
 
 }

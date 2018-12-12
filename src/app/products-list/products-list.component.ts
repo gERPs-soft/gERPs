@@ -17,6 +17,7 @@ export class ProductsListComponent implements OnInit {
   productsGroup: Array<ProductGroup>;
   suppliers: Array<Supplier>;
   sortedColumn = 'assort_index';
+  howSort: boolean = true;
 
   @Input()
   showProductForm: boolean;
@@ -38,8 +39,9 @@ export class ProductsListComponent implements OnInit {
     this.getProducts();
   }
 
-  sortThisColum(columnName: string) {
+  sortThisColum(columnName: string, how: boolean) {
     this.sortedColumn = columnName;
+    this.howSort = !how;
   }
 
   getProducts() {

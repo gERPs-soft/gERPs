@@ -1,4 +1,3 @@
-
 <div>
   <div class="btn-group" role="group" aria-label="Basic example">
     <button (click)="getProducts()">Show all products</button>
@@ -7,26 +6,28 @@
 </div>
 <div *ngIf="showProductForm">
   <app-products-edit (eventForm)="hideForm($event)"
-                     [initProduct]="productToEdit" [products_group]="productsGroup" [suppliers]="suppliers"></app-products-edit>
+                     [initProduct]="productToEdit" [products_group]="productsGroup"
+                     [suppliers]="suppliers"></app-products-edit>
 </div>
 <div>
   <table class="table table-hover">
     <thead class="thead-dark">
     <tr>
-      <th class="tabHeader" scope="col" (click)="sortThisColum('assort_index')">Lp <i class="fa fa-sort-desc"></i></th>
-      <th class="tabHeader" scope="col" (click)="sortThisColum('assort_index')">Indeks<i class="fa fa-sort-desc"></i></th>
-      <th class="tabHeader" scope="col" (click)="sortThisColum('name')">Name<i class="fa fa-sort-desc"></i></th>
-      <th class="tabHeader" scope="col" (click)="sortThisColum('unitOfMasure')">j.m<i class="fa fa-sort-desc"></i></th>
-      <th class="tabHeader" scope="col" (click)="sortThisColum('product_group')">Group<i class="fa fa-sort-desc"></i></th>
-      <th class="tabHeader" scope="col" (click)="sortThisColum('stock')">Stock<i class="fa fa-sort-desc"></i></th>
-      <th class="tabHeader" scope="col" (click)="sortThisColum('price')">Price<i class="fa fa-sort-desc"></i></th>
-      <th class="tabHeader" scope="col" (click)="sortThisColum('supplier')">Supplier<i class="fa fa-sort-desc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('assort_index', howSort)">Lp <i *ngIf="howSort===true" class="fa fa-sort-desc"></i><i *ngIf="howSort===false" class="fa fa-sort-asc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('assort_index', howSort)">Indeks<i *ngIf="howSort===true" class="fa fa-sort-desc"></i><i *ngIf="howSort===false" class="fa fa-sort-asc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('name', howSort)">Name<i *ngIf="howSort===true" class="fa fa-sort-desc"></i><i *ngIf="howSort===false" class="fa fa-sort-asc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('unitOfMasure', howSort)">j.m<i *ngIf="howSort===true" class="fa fa-sort-desc"></i><i *ngIf="howSort===false" class="fa fa-sort-asc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('product_group', howSort)">Group<i *ngIf="howSort===true" class="fa fa-sort-desc"></i><i *ngIf="howSort===false" class="fa fa-sort-asc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('stock', howSort)">Stock<i *ngIf="howSort===true" class="fa fa-sort-desc"></i><i *ngIf="howSort===false" class="fa fa-sort-asc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('price', howSort)">Price<i *ngIf="howSort===true" class="fa fa-sort-desc"></i><i *ngIf="howSort===false" class="fa fa-sort-asc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('supplier', howSort)">Supplier<i *ngIf="howSort===true" class="fa fa-sort-desc"></i><i *ngIf="howSort===false" class="fa fa-sort-asc"></i></th>
       <th class="tabHeader" scope="col"></th>
       <th class="tabHeader" scope="col"></th>
     </tr>
     </thead>
     <tbody id="searched_table">
-    <tr (click)="editProduct(product)" *ngFor="let product of products | sortIndex: sortedColumn; let i = index;">
+    <tr (click)="editProduct(product)"
+        *ngFor="let product of products | sortIndex: sortedColumn:howSort; let i = index;">
       <td style="text-align: center">{{i+1}}</td>
       <td>{{product.assort_index}}</td>
       <td>{{product.name}}</td>
