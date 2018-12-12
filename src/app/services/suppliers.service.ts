@@ -17,12 +17,15 @@ export class SuppliersService {
   getSupplierById(id: number): Observable<Supplier> {
     return this.http.get<Supplier>(this.supplierUrl + '' + id);
   }
+
   getAllSuppliers(): Observable<Array<Supplier>> {
-    return this.http.get<Array<Supplier>>(this.supplierUrl + 'all');
+    return this.http.get<Array<Supplier>>(this.supplierUrl + '' + 'all');
   }
+
   postAddOrSaveSupplier(supplier: Supplier): Observable<OrderStatus> {
     return this.http.post<OrderStatus>(this.supplierUrl + 'save', supplier);
   }
+
   deleteSupplierById(id: number): Observable<Supplier> {
     console.log('DeleteSupplierById=' + id);
     return this.http.delete<Supplier>(this.supplierUrl + id);

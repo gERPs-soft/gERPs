@@ -1,3 +1,4 @@
+
 <div>
   <div class="btn-group" role="group" aria-label="Basic example">
     <button (click)="getProducts()">Show all products</button>
@@ -6,26 +7,26 @@
 </div>
 <div *ngIf="showProductForm">
   <app-products-edit (eventForm)="hideForm($event)"
-                     [initProduct]="productToEdit" [products_group]="productsGroup"></app-products-edit>
+                     [initProduct]="productToEdit" [products_group]="productsGroup" [suppliers]="suppliers"></app-products-edit>
 </div>
 <div>
   <table class="table table-hover">
     <thead class="thead-dark">
     <tr>
-      <th class="tabHeader" scope="col">Lp</th>
-      <th class="tabHeader" scope="col">Indeks</th>
-      <th class="tabHeader" scope="col">Name</th>
-      <th class="tabHeader" scope="col">j.m</th>
-      <th class="tabHeader" scope="col">Group</th>
-      <th class="tabHeader" scope="col">Stock</th>
-      <th class="tabHeader" scope="col">Price</th>
-      <th class="tabHeader" scope="col">Supplier</th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('assort_index')">Lp <i class="fa fa-sort-desc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('assort_index')">Indeks<i class="fa fa-sort-desc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('name')">Name<i class="fa fa-sort-desc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('unitOfMasure')">j.m<i class="fa fa-sort-desc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('product_group')">Group<i class="fa fa-sort-desc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('stock')">Stock<i class="fa fa-sort-desc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('price')">Price<i class="fa fa-sort-desc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('supplier')">Supplier<i class="fa fa-sort-desc"></i></th>
       <th class="tabHeader" scope="col"></th>
       <th class="tabHeader" scope="col"></th>
     </tr>
     </thead>
     <tbody id="searched_table">
-    <tr *ngFor="let product of products | sortIndex: 'name'; let i = index;">
+    <tr (click)="editProduct(product)" *ngFor="let product of products | sortIndex: sortedColumn; let i = index;">
       <td style="text-align: center">{{i+1}}</td>
       <td>{{product.assort_index}}</td>
       <td>{{product.name}}</td>
@@ -33,7 +34,7 @@
       <td style="text-align: center">{{productsGroup[product.product_group-1].name}}</td>
       <td style="text-align: right">{{product.stock}}</td>
       <td style="text-align: center">{{product.price.toFixed(2) | transformPrice:'zł'}}</td>
-      <td style="text-align: center">{{product.supplier}}</td>
+      <td style="text-align: center">{{suppliers[product.supplier-1].name}}</td>
       <td>
         <button (click)="editProduct(product)">Edit</button>
       </td>

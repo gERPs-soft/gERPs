@@ -1,4 +1,3 @@
-
 <div>
   <div class="btn-group" role="group" aria-label="Basic example">
     <button (click)="getSuppliers()">Show all suppliers</button>
@@ -8,7 +7,7 @@
 
 <div *ngIf="showSuppliersForm">
   <app-suppliers-edit (eventForm)="hideForm($event)"
-                     [initSupplier]="supplierToEdit"></app-suppliers-edit>
+                      [initSupplier]="supplierToEdit"></app-suppliers-edit>
 </div>
 <div>
   <!--<app-suppliers-delete (eventForm)="hideDel($event)"></app-suppliers-delete>-->
@@ -19,22 +18,22 @@
   <table class="table table-hover">
     <thead class="thead-dark">
     <tr>
-      <th class="tabHeader" scope="col">Lp</th>
-      <th class="tabHeader" scope="col">Name</th>
-      <th class="tabHeader" scope="col">NIP</th>
-      <th class="tabHeader" scope="col">City</th>
-      <th class="tabHeader" scope="col">Street</th>
-      <th class="tabHeader" scope="col">nr</th>
-      <th class="tabHeader" scope="col">PostCode</th>
-      <th class="tabHeader" scope="col">Phone</th>
-      <th class="tabHeader" scope="col">email</th>
-      <th class="tabHeader" scope="col">www</th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('name')">Lp<i class="fa fa-sort-desc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('name')">Name<i class="fa fa-sort-desc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('nip')">NIP<i class="fa fa-sort-desc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('city')">City<i class="fa fa-sort-desc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('street')">Street<i class="fa fa-sort-desc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('street_number')">Nr<i class="fa fa-sort-desc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('post_code')">Post Code<i class="fa fa-sort-desc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('phone_number')">Phone<i class="fa fa-sort-desc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('email')">Email<i class="fa fa-sort-desc"></i></th>
+      <th class="tabHeader" scope="col" (click)="sortThisColum('www')">WWW<i class="fa fa-sort-desc"></i></th>
       <th class="tabHeader" scope="col"></th>
       <th class="tabHeader" scope="col"></th>
     </tr>
     </thead>
     <tbody id="searched_table">
-    <tr *ngFor="let supplier of suppliers | sortIndex: 'name'; let i = index;">
+    <tr (click)="editSupplier(supplier)" *ngFor="let supplier of suppliers | sortIndex: sortedColumn; let i = index;">
       <td style="text-align: center">{{i+1}}</td>
       <td>{{supplier.name}}</td>
       <td>{{supplier.nip}}</td>

@@ -1,13 +1,11 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {Product} from '../model/product';
-
 
 @Pipe({
   name: 'sortIndex'
 })
 export class SortIndexPipe implements PipeTransform {
 
-  transform(value: Array<Product>, args: string = 'name'): Array<Product> {
+  transform(value: Array<any>, args: string): Array<any> {
     value = value || [];
     return value.sort((a, b) => {
       // if (a.assort_index.toLowerCase() > b.assort_index.toLowerCase()) {

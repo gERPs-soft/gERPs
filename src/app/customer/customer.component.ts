@@ -15,6 +15,8 @@ export class CustomerComponent implements OnInit {
   @Input()
   showCustomerForm: boolean;
 
+  sortedColumn = 'companyName';
+
   constructor(private customerHttpService: CustomerHttpService) {
   }
 
@@ -27,6 +29,10 @@ export class CustomerComponent implements OnInit {
     this.customerHttpService.getAllCustomers().subscribe(data => {
       this.customers = data.slice();
     });
+  }
+
+  sortThisColum(columnName: string) {
+    this.sortedColumn = columnName;
   }
 
   addCustomerForm() {

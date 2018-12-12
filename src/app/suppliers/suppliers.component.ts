@@ -19,6 +19,7 @@ export class SuppliersComponent implements OnInit {
 
   supplierToEdit: Supplier;
   suppliers: Array<Supplier>;
+  sortedColumn = 'name';
 
   constructor(private supplierService: SuppliersService) {
   }
@@ -26,6 +27,10 @@ export class SuppliersComponent implements OnInit {
   ngOnInit() {
     this.showSuppliersForm = false;
     this.getSuppliers();
+  }
+
+  sortThisColum(columnName: string) {
+    this.sortedColumn = columnName;
   }
 
   hideForm(event: boolean) {

@@ -3,6 +3,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {Product} from '../model/product';
 import {ProductsHttpService} from '../services/products-http.service';
 import {ProductGroup} from '../model/product-group';
+import {Supplier} from '../model/supplier';
 
 @Component({
   selector: 'app-products-edit',
@@ -21,6 +22,8 @@ export class ProductsEditComponent implements OnInit {
   initProduct: Product;
   @Input()
   products_group: Array<ProductGroup>;
+  @Input()
+  suppliers: Array<Supplier>;
 
   unitOfMass = ['szt', 'litr', 'tona', 'opakowanie', 'bańka'];
   package_units = ['Karton', 'Folia', 'Baniak', 'Paleta', 'Box'];

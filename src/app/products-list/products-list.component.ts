@@ -3,6 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {Product} from '../model/product';
 import {ProductsHttpService} from '../services/products-http.service';
 import {ProductGroup} from '../model/product-group';
+import {SuppliersService} from '../services/suppliers.service';
+import {Supplier} from '../model/supplier';
 
 @Component({
   selector: 'app-products-list',
@@ -13,22 +15,31 @@ export class ProductsListComponent implements OnInit {
   productToEdit: Product;
   products: Array<Product>;
   productsGroup: Array<ProductGroup>;
+  suppliers: Array<Supplier>;
+  sortedColumn = 'assort_index';
 
   @Input()
   showProductForm: boolean;
 
-  constructor(private http: HttpClient, private productsService: ProductsHttpService) {
+  constructor(private http: HttpClient, private productsService: ProductsHttpService, private suppliersService: SuppliersService) {
   }
 
   ngOnInit() {
     this.showProductForm = false;
-    this.getProducts();
+    this.suppliersService.getAllSuppliers().subscribe(data => {
+      this.suppliers = data;
+    });
     this.getGroup();
+    this.getProducts();
   }
 
-  hideForm(boolean) {
-    this.showProductForm = false;
+  hideForm(hide: boolean) {
+    this.showProductForm = hide;
     this.getProducts();
+  }
+
+  sortThisColum(columnName: string) {
+    this.sortedColumn = columnName;
   }
 
   getProducts() {
